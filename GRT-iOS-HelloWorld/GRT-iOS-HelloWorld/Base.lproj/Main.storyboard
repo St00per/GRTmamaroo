@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcv-fJ-IK8">
-                                <rect key="frame" x="163" y="649" width="91" height="30"/>
+                                <rect key="frame" x="80" y="649" width="91" height="30"/>
                                 <state key="normal" title="Save Pipeline"/>
                                 <connections>
                                     <action selector="savePipeline:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tue-Ns-QJA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvB-mj-21F">
-                                <rect key="frame" x="295" y="649" width="74" height="30"/>
+                                <rect key="frame" x="290" y="649" width="74" height="30"/>
                                 <state key="normal" title="Share data"/>
                                 <connections>
                                     <action selector="shareData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QpY-Vh-Exb"/>
@@ -64,9 +64,11 @@
                                 <rect key="frame" x="20" y="613" width="335" height="29"/>
                                 <segments>
                                     <segment title="No Gesture"/>
-                                    <segment title="Gesture 1"/>
-                                    <segment title="Gesture 2"/>
-                                    <segment title="Gesture 3"/>
+                                    <segment title="CarRide"/>
+                                    <segment title="Kangaroo"/>
+                                    <segment title="TreeSwing"/>
+                                    <segment title="Rock-a-bye"/>
+                                    <segment title="Wave"/>
                                 </segments>
                             </segmentedControl>
                         </subviews>
@@ -92,6 +94,11 @@
                             <constraint firstItem="LIm-Rt-FF5" firstAttribute="top" secondItem="W1r-dH-p28" secondAttribute="bottom" constant="18" id="w25-yd-XXN"/>
                             <constraint firstItem="W1r-dH-p28" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="6" id="xpV-ur-VML"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="KvB-mj-21F"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Training" id="xS8-Fu-0h6"/>
                     <connections>
@@ -128,25 +135,40 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gesture 3 Count: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0T-DC-xvK">
-                                <rect key="frame" x="167" y="633" width="135" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TreeSwing: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0T-DC-xvK">
+                                <rect key="frame" x="140" y="533" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gesture 2 Count: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVF-pL-39m">
-                                <rect key="frame" x="167" y="555" width="135" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kangaroo: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVF-pL-39m">
+                                <rect key="frame" x="140" y="504" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z89-Zr-wmO" customClass="SRPlotView" customModule="SwiftR">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z89-Zr-wmO" customClass="SRPlotView" customModule="SwiftR">
                                 <rect key="frame" x="20" y="155" width="275" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gesture 1 Count: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqw-uH-nzZ">
-                                <rect key="frame" x="140" y="475" width="135" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CarRide: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqw-uH-nzZ">
+                                <rect key="frame" x="140" y="475" width="70" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GHO-dP-gUU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rock-a-bye" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HjL-dl-UK3">
+                                <rect key="frame" x="140" y="562" width="90" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wave:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGv-Qa-LCS">
+                                <rect key="frame" x="140" y="591" width="47" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -155,24 +177,30 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="o8p-ZS-D3m" firstAttribute="centerX" secondItem="AYq-lj-ikU" secondAttribute="centerX" id="2ld-FQ-AnG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qqw-uH-nzZ" secondAttribute="trailing" constant="92" id="4J9-gF-a9L"/>
                             <constraint firstItem="o8p-ZS-D3m" firstAttribute="centerX" secondItem="w3a-y6-biW" secondAttribute="centerX" id="64c-e7-grZ"/>
-                            <constraint firstItem="1k4-i3-gtd" firstAttribute="top" secondItem="p0T-DC-xvK" secondAttribute="bottom" constant="33" id="Hg4-K5-7dj"/>
+                            <constraint firstItem="p0T-DC-xvK" firstAttribute="top" secondItem="kVF-pL-39m" secondAttribute="bottom" constant="8" symbolic="YES" id="696-CG-dSC"/>
+                            <constraint firstItem="kVF-pL-39m" firstAttribute="leading" secondItem="w3a-y6-biW" secondAttribute="leadingMargin" constant="120" id="Agb-ka-ZNu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kVF-pL-39m" secondAttribute="trailing" constant="171" id="NMd-3X-6sV"/>
                             <constraint firstItem="o8p-ZS-D3m" firstAttribute="top" secondItem="r0Y-bG-Byz" secondAttribute="bottom" constant="24" id="QX6-Mk-NrO"/>
-                            <constraint firstItem="p0T-DC-xvK" firstAttribute="top" secondItem="kVF-pL-39m" secondAttribute="bottom" constant="57" id="XgE-cU-Zd5"/>
-                            <constraint firstItem="qqw-uH-nzZ" firstAttribute="leading" secondItem="kVF-pL-39m" secondAttribute="leading" id="auM-6x-S7r"/>
-                            <constraint firstItem="qqw-uH-nzZ" firstAttribute="trailing" secondItem="kVF-pL-39m" secondAttribute="trailing" id="eFM-qu-DHZ"/>
+                            <constraint firstItem="p0T-DC-xvK" firstAttribute="leading" secondItem="kVF-pL-39m" secondAttribute="leading" id="SBy-ws-iLf"/>
+                            <constraint firstItem="kVF-pL-39m" firstAttribute="leading" secondItem="qqw-uH-nzZ" secondAttribute="leading" id="Vq6-1U-St0"/>
+                            <constraint firstItem="HjL-dl-UK3" firstAttribute="top" secondItem="p0T-DC-xvK" secondAttribute="bottom" constant="8" symbolic="YES" id="W2N-f9-d5Z"/>
+                            <constraint firstItem="HjL-dl-UK3" firstAttribute="leading" secondItem="p0T-DC-xvK" secondAttribute="leading" id="Yon-R7-CUj"/>
+                            <constraint firstItem="kVF-pL-39m" firstAttribute="top" secondItem="qqw-uH-nzZ" secondAttribute="bottom" constant="8" symbolic="YES" id="ccc-qH-0bo"/>
                             <constraint firstItem="AYq-lj-ikU" firstAttribute="top" secondItem="o8p-ZS-D3m" secondAttribute="bottom" constant="33" id="k0z-PA-zVj"/>
-                            <constraint firstItem="kVF-pL-39m" firstAttribute="top" secondItem="qqw-uH-nzZ" secondAttribute="bottom" constant="57" id="kUF-kz-N3M"/>
-                            <constraint firstItem="kVF-pL-39m" firstAttribute="leading" secondItem="p0T-DC-xvK" secondAttribute="leading" id="vpR-rN-Ada"/>
+                            <constraint firstItem="qqw-uH-nzZ" firstAttribute="top" secondItem="AYq-lj-ikU" secondAttribute="bottom" constant="356" id="oOX-MJ-VxD"/>
+                            <constraint firstItem="HGv-Qa-LCS" firstAttribute="top" secondItem="HjL-dl-UK3" secondAttribute="bottom" constant="8" id="rNg-Y9-4ar"/>
+                            <constraint firstItem="HGv-Qa-LCS" firstAttribute="leading" secondItem="HjL-dl-UK3" secondAttribute="leading" id="swf-PA-0Id"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Prediction" id="udn-RR-bKb"/>
+                    <tabBarItem key="tabBarItem" title="Recognizing" id="udn-RR-bKb"/>
                     <connections>
-                        <outlet property="gestureOneCountLabel" destination="qqw-uH-nzZ" id="nM2-xm-9gP"/>
-                        <outlet property="gestureThreeCountLabel" destination="p0T-DC-xvK" id="YaY-O7-RXY"/>
-                        <outlet property="gestureTwoCountLabel" destination="kVF-pL-39m" id="mbz-ZP-Upv"/>
+                        <outlet property="carRideCountLabel" destination="qqw-uH-nzZ" id="Dvh-CH-awX"/>
                         <outlet property="graphView" destination="Z89-Zr-wmO" id="8RU-oA-GVq"/>
+                        <outlet property="kangarooCountLabel" destination="kVF-pL-39m" id="1m2-YE-aDC"/>
+                        <outlet property="rockAByeCountLabel" destination="HjL-dl-UK3" id="eZg-bY-p7d"/>
+                        <outlet property="treeSwingCountLabel" destination="p0T-DC-xvK" id="0UJ-KD-Gbr"/>
+                        <outlet property="waveCountLabel" destination="HGv-Qa-LCS" id="asf-j5-4VL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LdT-W2-H9x" userLabel="First Responder" sceneMemberID="firstResponder"/>

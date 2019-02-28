@@ -13,9 +13,12 @@ import SwiftR
 
 class PredictionViewController: UIViewController {
     
-    @IBOutlet var gestureOneCountLabel: UILabel!
-    @IBOutlet var gestureTwoCountLabel: UILabel! 
-    @IBOutlet var gestureThreeCountLabel: UILabel!
+    @IBOutlet var carRideCountLabel: UILabel!
+    @IBOutlet var kangarooCountLabel: UILabel!
+    @IBOutlet var treeSwingCountLabel: UILabel!
+    @IBOutlet var rockAByeCountLabel: UILabel!
+    @IBOutlet var waveCountLabel: UILabel!
+    
     
     @IBOutlet weak var graphView: SRMergePlotView! {
         didSet {
@@ -24,9 +27,11 @@ class PredictionViewController: UIViewController {
         }
     }
 
-    var gestureOneCount: UInt = 0
-    var gestureTwoCount: UInt = 0
-    var gestureThreeCount: UInt = 0
+    var carRideCount: UInt = 0
+    var kangarooCount: UInt = 0
+    var treeSwingCount: UInt = 0
+    var rockAByeCount: UInt = 0
+    var waveCount: UInt = 0
     
     fileprivate let accelerometerManager = AccelerometerManager()
 
@@ -49,15 +54,21 @@ class PredictionViewController: UIViewController {
     }
     
     func resetGestureCount() {
-        gestureOneCountLabel.text = "Gesture 1 count: "
-        gestureTwoCountLabel.text = "Gesture 2 count: "
-        gestureThreeCountLabel.text = "Gesture 3 count: "
-        gestureOneCount = 0
-        gestureTwoCount = 0
-        gestureThreeCount = 0
+        carRideCountLabel.text = "CarRide: "
+        kangarooCountLabel.text = "Kangaroo: "
+        treeSwingCountLabel.text = "TreeSwing: "
+        rockAByeCountLabel.text = "Rock-a-bye: "
+        waveCountLabel.text = "Wave: "
+        
+        
+        carRideCount = 0
+        kangarooCount = 0
+        treeSwingCount = 0
+        rockAByeCount = 0
+        waveCount = 0
     }
     
-    func initPipeline(){
+    func initPipeline() {
         
         //Load the GRT pipeline and the training data files from the documents directory
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -95,9 +106,9 @@ class PredictionViewController: UIViewController {
             self.vector.pushBack(deviceMotion.userAcceleration.x)
             self.vector.pushBack(deviceMotion.userAcceleration.y)
             self.vector.pushBack(deviceMotion.userAcceleration.z)
-            self.vector.pushBack(deviceMotion.magneticField.field.x)
-            self.vector.pushBack(deviceMotion.magneticField.field.y)
-            self.vector.pushBack(deviceMotion.magneticField.field.z)
+            self.vector.pushBack(deviceMotion.rotationRate.x)
+            self.vector.pushBack(deviceMotion.rotationRate.y)
+            self.vector.pushBack(deviceMotion.rotationRate.z)
             self.vector.pushBack(deviceMotion.gravity.x)
             self.vector.pushBack(deviceMotion.gravity.y)
             self.vector.pushBack(deviceMotion.gravity.z)
@@ -107,29 +118,37 @@ class PredictionViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.updateGestureCountLabels(gesture: (self.pipeline?.predictedClassLabel)!)
-                print("PRECITED GESTURE", self.pipeline?.predictedClassLabel ?? 0);
+                //print("PRECITED GESTURE", self.pipeline?.predictedClassLabel ?? 0);
                 self.graphView.addData([deviceMotion.userAcceleration.x, deviceMotion.userAcceleration.y, deviceMotion.userAcceleration.z])
             }
             
         }
     }
     
-    func updateGestureCountLabels(gesture: UInt){
+    func updateGestureCountLabels(gesture: UInt) {
         
         if gesture == 0 {
             //do nothing
-        } else if (gesture == 1){
-            gestureOneCount = gestureOneCount + 1
-            let gestureOneCountVal = String(gestureOneCount)
-            gestureOneCountLabel.text = ("Gesture 1 count: " + gestureOneCountVal)
-        } else if (gesture == 2){
-            gestureTwoCount = gestureTwoCount + 1
-            let gestureTwoCountVal = String(gestureTwoCount)
-            gestureTwoCountLabel.text = ("Gesture 2 count: " + gestureTwoCountVal)
-        } else if (gesture == 3){
-            gestureThreeCount = gestureThreeCount + 1
-            let gestureThreeCountVal = String(gestureThreeCount)
-            gestureThreeCountLabel.text = ("Gesture 3 count: " + gestureThreeCountVal)
+        } else if (gesture == 1) {
+            carRideCount += 1
+            let carRideCountVal = String(carRideCount)
+            carRideCountLabel.text = ("CarRide: " + carRideCountVal)
+        } else if (gesture == 2) {
+            kangarooCount += 1
+            let kangarooCountVal = String(kangarooCount)
+            kangarooCountLabel.text = ("Kangaroo: " + kangarooCountVal)
+        } else if (gesture == 3) {
+            treeSwingCount += 1
+            let treeSwingCountVal = String(treeSwingCount)
+            treeSwingCountLabel.text = ("TreeSwing: " + treeSwingCountVal)
+        } else if (gesture == 4) {
+            rockAByeCount += 1
+            let rockAByeCountVal = String(rockAByeCount)
+            rockAByeCountLabel.text = ("RockABye: " + rockAByeCountVal)
+        } else if (gesture == 5) {
+            waveCount += 1
+            let waveCountVal = String(waveCount)
+            waveCountLabel.text = ("Wave: " + waveCountVal)
         }
         
     }
