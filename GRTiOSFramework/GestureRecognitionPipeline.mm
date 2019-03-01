@@ -89,12 +89,12 @@ private:
     self.instance->setClassifier(classifier);
     classifier.enableNullRejection(true);
     self.instance->addPostProcessingModule(GRT::ClassLabelTimeoutFilter(500, GRT::ClassLabelTimeoutFilter::ALL_CLASS_LABELS));
-    self.classificationData->setNumDimensions(9);
+    self.classificationData->setNumDimensions(6);
 }
 
 //// save and load pipeline
 - (BOOL)savePipeline:(NSURL *)url {
-    BOOL result = self.instance->savePipelineToFile(std::string([url fileSystemRepresentation]));
+    BOOL result = self.instance->save(std::string([url fileSystemRepresentation]));
     return result;
 }
 

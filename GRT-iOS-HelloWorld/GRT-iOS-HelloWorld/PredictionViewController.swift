@@ -109,9 +109,9 @@ class PredictionViewController: UIViewController {
             self.vector.pushBack(deviceMotion.rotationRate.x)
             self.vector.pushBack(deviceMotion.rotationRate.y)
             self.vector.pushBack(deviceMotion.rotationRate.z)
-            self.vector.pushBack(deviceMotion.gravity.x)
-            self.vector.pushBack(deviceMotion.gravity.y)
-            self.vector.pushBack(deviceMotion.gravity.z)
+//            self.vector.pushBack(deviceMotion.attitude.pitch)
+//            self.vector.pushBack(deviceMotion.attitude.yaw)
+//            self.vector.pushBack(deviceMotion.attitude.roll)
             
             //Use the incoming accellerometer data to predict what the performed gesture class is
             self.pipeline?.predict(self.vector)

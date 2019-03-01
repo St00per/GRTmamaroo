@@ -141,8 +141,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kangaroo: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVF-pL-39m">
-                                <rect key="frame" x="140" y="504" width="83" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Kangaroo: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVF-pL-39m">
+                                <rect key="frame" x="140" y="504" width="143" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -180,7 +180,6 @@
                             <constraint firstItem="o8p-ZS-D3m" firstAttribute="centerX" secondItem="w3a-y6-biW" secondAttribute="centerX" id="64c-e7-grZ"/>
                             <constraint firstItem="p0T-DC-xvK" firstAttribute="top" secondItem="kVF-pL-39m" secondAttribute="bottom" constant="8" symbolic="YES" id="696-CG-dSC"/>
                             <constraint firstItem="kVF-pL-39m" firstAttribute="leading" secondItem="w3a-y6-biW" secondAttribute="leadingMargin" constant="120" id="Agb-ka-ZNu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kVF-pL-39m" secondAttribute="trailing" constant="171" id="NMd-3X-6sV"/>
                             <constraint firstItem="o8p-ZS-D3m" firstAttribute="top" secondItem="r0Y-bG-Byz" secondAttribute="bottom" constant="24" id="QX6-Mk-NrO"/>
                             <constraint firstItem="p0T-DC-xvK" firstAttribute="leading" secondItem="kVF-pL-39m" secondAttribute="leading" id="SBy-ws-iLf"/>
                             <constraint firstItem="kVF-pL-39m" firstAttribute="leading" secondItem="qqw-uH-nzZ" secondAttribute="leading" id="Vq6-1U-St0"/>
@@ -205,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LdT-W2-H9x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2100" y="818.66197183098598"/>
+            <point key="canvasLocation" x="2100" y="818.47826086956525"/>
         </scene>
         <!--GRT on iOS-->
         <scene sceneID="0bh-Wf-JLS">

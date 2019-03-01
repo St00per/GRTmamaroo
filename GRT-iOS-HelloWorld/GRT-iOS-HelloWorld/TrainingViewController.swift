@@ -42,6 +42,7 @@ class TrainingViewController: UIViewController {
 
         //Create an instance of a GRT pipeline
         self.pipeline = appDelegate.pipeline!
+        initPipeline()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,9 +67,9 @@ class TrainingViewController: UIViewController {
             vector.pushBack(deviceMotion.rotationRate.x)
             vector.pushBack(deviceMotion.rotationRate.y)
             vector.pushBack(deviceMotion.rotationRate.z)
-            vector.pushBack(deviceMotion.gravity.x)
-            vector.pushBack(deviceMotion.gravity.y)
-            vector.pushBack(deviceMotion.gravity.z)
+//            vector.pushBack(deviceMotion.attitude.pitch)
+//            vector.pushBack(deviceMotion.attitude.yaw)
+//            vector.pushBack(deviceMotion.attitude.roll)
             
 //            print("x", x)
 //            print("y", y)
@@ -82,6 +83,8 @@ class TrainingViewController: UIViewController {
         })
     }
     
+    
+    
     func TrainBtnPressed(_ sender: Any) {
         trainButton.isSelected = true
     }
@@ -90,6 +93,7 @@ class TrainingViewController: UIViewController {
         trainButton.isSelected = false
     }
   
+    
     
     @IBAction func savePipeline(_ sender: Any) {
         // Set URL for saving the pipeline to
@@ -122,27 +126,30 @@ class TrainingViewController: UIViewController {
         }
     }
     
-//    @IBAction func shareData(_ sender: UIButton) {
-//
-//        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//
-//        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
-//        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
-//
-//        do {
-//
-//            let pipelineURL = NSURL(fileURLWithPath: String(pipelineURL))
-//            let classificationDataURL = NSURL(fileURLWithPath: <#T##String#>)
-//            let objectsToShare = [fileURL,]
-//            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-//
-//            self.presentViewController(activityVC, animated: true, completion: nil)
-//
-//        } catch {
-//            print("cannot write file")
-//            // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
-//        }
-//
-//    }
+    func initPipeline() {
+        
+        //Load the GRT pipeline and the training data files from the documents directory
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
+        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
+        
+        let pipelineResult:Bool = pipeline!.load(pipelineURL)
+        let classificationDataResult:Bool = pipeline!.loadClassificationData(classificiationDataURL)
+        
+        if pipelineResult == false {
+            let userAlert = UIAlertController(title: "Error", message: "Couldn't load pipeline", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+            userAlert.addAction(cancel)
+            self.present(userAlert, animated: true, completion: { _ in })
+        }
+        
+        if classificationDataResult == false {
+            let userAlert = UIAlertController(title: "Error", message: "Couldn't load classification data", preferredStyle: .alert)
+            self.present(userAlert, animated: true, completion: { _ in })
+            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+            userAlert.addAction(cancel)
+        }
+    }
 }
 
