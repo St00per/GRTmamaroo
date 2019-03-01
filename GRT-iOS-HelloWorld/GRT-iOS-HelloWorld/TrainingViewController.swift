@@ -126,6 +126,14 @@ class TrainingViewController: UIViewController {
         }
     }
     
+    @IBAction func showUserMode(_ sender: UIButton) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "DetectingProcess", bundle: nil)
+        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "DetectingProcessViewController") as? DetectingProcessViewController else {
+            return
+        }
+        show(desVC, sender: nil)
+    }
+    
     func initPipeline() {
         
         //Load the GRT pipeline and the training data files from the documents directory

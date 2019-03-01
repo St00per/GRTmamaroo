@@ -10,6 +10,8 @@
 		0E5258102229404D005442E2 /* UserModeMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E52580F2229404D005442E2 /* UserModeMain.storyboard */; };
 		0E52581422294142005442E2 /* UserModeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52581322294142005442E2 /* UserModeMainViewController.swift */; };
 		0E525816222941A6005442E2 /* DetectingProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E525815222941A6005442E2 /* DetectingProcessViewController.swift */; };
+		0E6720C02229447B00957425 /* DetectingProcess.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720BE2229447A00957425 /* DetectingProcess.storyboard */; };
+		0E6720C2222944E400957425 /* PatternDetected.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720C1222944E400957425 /* PatternDetected.storyboard */; };
 		E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4775E791F5EF5D500D306FD /* TrainingViewController.swift */; };
 		E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */; };
 		E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB6D361F5EF38A00917F2B /* AcceleremoterManager.swift */; };
@@ -81,6 +83,8 @@
 		0E52580F2229404D005442E2 /* UserModeMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserModeMain.storyboard; sourceTree = "<group>"; };
 		0E52581322294142005442E2 /* UserModeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModeMainViewController.swift; sourceTree = "<group>"; };
 		0E525815222941A6005442E2 /* DetectingProcessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectingProcessViewController.swift; sourceTree = "<group>"; };
+		0E6720BE2229447A00957425 /* DetectingProcess.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetectingProcess.storyboard; sourceTree = "<group>"; };
+		0E6720C1222944E400957425 /* PatternDetected.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PatternDetected.storyboard; sourceTree = "<group>"; };
 		E41951FF1F4B6D3E0016E511 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E4775E791F5EF5D500D306FD /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				0E52580F2229404D005442E2 /* UserModeMain.storyboard */,
+				0E6720BE2229447A00957425 /* DetectingProcess.storyboard */,
+				0E6720C1222944E400957425 /* PatternDetected.storyboard */,
 				0E52581322294142005442E2 /* UserModeMainViewController.swift */,
 				0E525815222941A6005442E2 /* DetectingProcessViewController.swift */,
 			);
@@ -424,7 +430,9 @@
 				E4C972E41F45DA0400406BCF /* LaunchScreen.storyboard in Resources */,
 				E4C972E11F45DA0400406BCF /* Assets.xcassets in Resources */,
 				E4C972DF1F45DA0400406BCF /* Main.storyboard in Resources */,
+				0E6720C02229447B00957425 /* DetectingProcess.storyboard in Resources */,
 				0E5258102229404D005442E2 /* UserModeMain.storyboard in Resources */,
+				0E6720C2222944E400957425 /* PatternDetected.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

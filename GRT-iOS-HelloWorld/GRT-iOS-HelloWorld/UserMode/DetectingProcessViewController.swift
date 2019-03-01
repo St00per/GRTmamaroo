@@ -7,209 +7,122 @@
 //
 
 import UIKit
-import CoreMotion
-import NVActivityIndicatorView
-import ARKit
+import GRTiOS
+import SwiftR
 
 class DetectingProcessViewController: UIViewController {
     
-    let motion = CMMotionManager()
-    var motionData: [(Double,Double,Double)] = []
-    let deviceMotion = CMDeviceMotion()
-    let motionFrameReference: CMAttitudeReferenceFrame = CMAttitudeReferenceFrame.xArbitraryCorrectedZVertical
-    let kLowPassFilteringFactor: Double = 0.1
-    let noiseReduction: Double = 0.02
-    
-    var previousLowPassFilteredAccelerationX: Double = 0
-    var previousLowPassFilteredAccelerationY: Double = 0
-    var previousLowPassFilteredAccelerationZ: Double = 0
-    
-    var previousAccelerationX: Double = 0
-    var previousAccelerationY: Double = 0
-    var previousAccelerationZ: Double = 0
-    
-    var resultAccelerationX = 0.0
-    var resultAccelerationY = 0.0
-    var resultAccelerationZ = 0.0
-    
-    var previousVelocityX: Double = 0
-    var previousVelocityY: Double = 0
-    var previousVelocityZ: Double = 0
-    
-    var previousDistanceX: Double = 0
-    var previousDistanceY: Double = 0
-    var previousDistanceZ: Double = 0
-    
-    var points: [(Double,Double,Double)] = []
-    var currentTime: Double = 0
-    
-    @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
+    var carRideCount: UInt = 0
+    var kangarooCount: UInt = 0
+    var treeSwingCount: UInt = 0
+    var rockAByeCount: UInt = 0
+    var waveCount: UInt = 0
+    var currentClassLabel = 0 as UInt
+    var labelUpdateTime = Date.timeIntervalSinceReferenceDate
+    let vector = VectorDouble()
+    var pipeline: GestureRecognitionPipeline?
+    fileprivate let accelerometerManager = AccelerometerManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.pipeline = appDelegate.pipeline!
+        
+        initPipeline()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        activityIndicator.startAnimating()
-        myDeviceMotion()
-        //myAccelerometer()
+    override func viewWillDisappear(_ animated: Bool) {
+        accelerometerManager.stop()
+        resetGestureCount()
     }
     
-
+    func resetGestureCount() {
+        carRideCount = 0
+        kangarooCount = 0
+        treeSwingCount = 0
+        rockAByeCount = 0
+        waveCount = 0
+    }
     
-    func myAccelerometer() {
-        print("Start Accelerometer")
-        motion.accelerometerUpdateInterval = 1/100
-
-        motion.startAccelerometerUpdates(to: OperationQueue.current!) {
-            (data, error) in
+    func initPipeline() {
+        
+        //Load the GRT pipeline and the training data files from the documents directory
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
+        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
+        
+        let pipelineResult:Bool = pipeline!.load(pipelineURL)
+        let classificationDataResult:Bool = pipeline!.loadClassificationData(classificiationDataURL)
+        
+        if pipelineResult == false {
+            let userAlert = UIAlertController(title: "Error", message: "Couldn't load pipeline", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+            userAlert.addAction(cancel)
+            self.present(userAlert, animated: true, completion: { _ in })
+        }
+        
+        if classificationDataResult == false {
+            let userAlert = UIAlertController(title: "Error", message: "Couldn't load classification data", preferredStyle: .alert)
+            self.present(userAlert, animated: true, completion: { _ in })
+            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+            userAlert.addAction(cancel)
+        }
             
-            if let trueData =  data {
-                //print("\(String(format: "%.2f", trueData.acceleration.x)),\(String(format: "%.2f", trueData.acceleration.y)),\(String(format: "%.2f", trueData.acceleration.z))")
-            }
+            //If the files have been loaded successfully, we can train the pipeline, and then start real-time gesture prediction
+        else if (classificationDataResult && pipelineResult) {
+            pipeline?.train()
+            performGesturePrediction()
         }
-        return
     }
     
-    func myGyroscope() {
-        print("Start Gyroscope")
-        motion.gyroUpdateInterval = 0.5
-        motion.startGyroUpdates(to: OperationQueue.current!) {
-            (data, error) in
-            //print(data as Any)
-            if let trueData =  data {
-                
-                
-                print("\(String(format: "%.2f", trueData.rotationRate.x)),\(String(format: "%.2f", trueData.rotationRate.y)),\(String(format: "%.2f", trueData.rotationRate.z))")
-            }
-        }
-        return
-    }
-    
-    
-    
-    func myDeviceMotion() {
-        print("Start DeviceMotion")
-        motion.deviceMotionUpdateInterval  = 1/100
-        motion.startDeviceMotionUpdates(using:.xArbitraryCorrectedZVertical , to: OperationQueue.current!) {
-            (data, error) in
+    func performGesturePrediction() {
+        accelerometerManager.start { (deviceMotion) -> Void in
+            self.vector.clear()
+            self.vector.pushBack(deviceMotion.userAcceleration.x)
+            self.vector.pushBack(deviceMotion.userAcceleration.y)
+            self.vector.pushBack(deviceMotion.userAcceleration.z)
+            self.vector.pushBack(deviceMotion.rotationRate.x)
+            self.vector.pushBack(deviceMotion.rotationRate.y)
+            self.vector.pushBack(deviceMotion.rotationRate.z)
             
-            if let trueData =  data {
-                let userAcceleration = trueData.userAcceleration
-                var lowpassFilterAcceleration = CMAcceleration()
-                let time = self.motion.deviceMotionUpdateInterval
+            //Use the incoming accellerometer data to predict what the performed gesture class is
+            self.pipeline?.predict(self.vector)
+            
+            DispatchQueue.main.async {
+                self.updateGestureCountLabels(gesture: (self.pipeline?.predictedClassLabel)!)
                 
-                self.currentTime += time
-                //print(self.currentTime)
-                if self.currentTime > 0.5 {
-                    //print("DRIFT CLEAR")
-                    self.currentTime = 0
-                    self.previousDistanceX = 0
-                    self.previousDistanceY = 0
-                    self.previousDistanceZ = 0
-                }
-                var pitch0 = degrees(radians: trueData.attitude.pitch)
-                var roll0 = degrees(radians: trueData.attitude.roll)
-                var yaw0 = degrees(radians: trueData.attitude.yaw)
                 
-                    lowpassFilterAcceleration.x = (userAcceleration.x * self.kLowPassFilteringFactor) + (self.previousLowPassFilteredAccelerationX * (1.0 - self.kLowPassFilteringFactor))
-                    lowpassFilterAcceleration.y = (userAcceleration.y * self.kLowPassFilteringFactor) + (self.previousLowPassFilteredAccelerationX * (1.0 - self.kLowPassFilteringFactor))
-                    lowpassFilterAcceleration.z = (userAcceleration.z * self.kLowPassFilteringFactor) + (self.previousLowPassFilteredAccelerationX * (1.0 - self.kLowPassFilteringFactor))
-                
-                self.previousLowPassFilteredAccelerationX = lowpassFilterAcceleration.x
-                self.previousLowPassFilteredAccelerationY = lowpassFilterAcceleration.y
-                self.previousLowPassFilteredAccelerationZ = lowpassFilterAcceleration.z
-                
-                if (abs(userAcceleration.x) > self.noiseReduction || abs(userAcceleration.y) > self.noiseReduction || abs(userAcceleration.z) > self.noiseReduction) {
-                    
-//                    self.previousVelocityX += lowpassFilterAcceleration.x
-//                    self.previousVelocityY += lowpassFilterAcceleration.y
-//                    self.previousVelocityZ += lowpassFilterAcceleration.z
-                
-                    self.previousVelocityX += userAcceleration.x
-                    self.previousVelocityY += userAcceleration.y
-                    self.previousVelocityZ += userAcceleration.z
-                
-                    self.previousDistanceX += self.previousVelocityX
-                    self.previousDistanceY += self.previousVelocityY
-                    self.previousDistanceZ += self.previousVelocityZ
- 
-                    
-                    //self.points.append((userAcceleration.x, userAcceleration.y, userAcceleration.z))
-                    
-                print("\(String(format: "%.4f", -self.previousDistanceX)),\(String(format: "%.4f", -self.previousDistanceZ))")
-//                    print("\(String(format: "%.4f", self.currentTime)),\(String(format: "%.4f", trueData.userAcceleration.y))")
-//                    print("\(String(format: "%.4f", self.currentTime)),\(String(format: "%.4f", trueData.userAcceleration.z))")
-                //print("\(String(format: "%.4f", trueData.userAcceleration.x)), \(String(format: "%.4f", trueData.attitude.quaternion.y)), \(String(format: "%.4f", trueData.attitude.quaternion.z)), \(String(format: "%.4f", trueData.attitude.quaternion.w))")
-                }
             }
-        }
-        return
-    }
-   
-    func patternCompare(motionData: [(Double,Double,Double)]) {
-        
-    }
-    
-    @IBAction func printPoints(_ sender: UIButton) {
-        print("XXX")
-        for point in self.points {
-            print("\(String(format: "%.6f", point.0))")
-        }
-        print("YYY")
-        for point in self.points {
-            print("\(String(format: "%.6f", point.1))")
-        }
-        print("ZZZ")
-        for point in self.points {
-            print("\(String(format: "%.6f", point.2))")
+            
         }
     }
-}
-
-extension CMDeviceMotion {
     
-    func userAccelerationInReferenceFrame() -> CMAcceleration {
+    func updateGestureCountLabels(gesture: UInt) {
         
-        let origin = userAcceleration
-        let rotation = attitude.rotationMatrix
-        let matrix = rotation.inverse()
-        
-        var result = CMAcceleration()
-        result.x = origin.x * matrix.m11 + origin.y * matrix.m12 + origin.z * matrix.m13;
-        result.y = origin.x * matrix.m21 + origin.y * matrix.m22 + origin.z * matrix.m23;
-        result.z = origin.x * matrix.m31 + origin.y * matrix.m32 + origin.z * matrix.m33;
-        
-        return result
+        if gesture == 0 {
+            //do nothing
+        } else if (gesture == 1) {
+            carRideCount += 1
+            
+        } else if (gesture == 2) {
+            kangarooCount += 1
+            
+        } else if (gesture == 3) {
+            treeSwingCount += 1
+            
+        } else if (gesture == 4) {
+            rockAByeCount += 1
+            
+        } else if (gesture == 5) {
+            waveCount += 1
+            
+        }
+        print ("CAR RIDE: \(carRideCount) KANGAROO: \(kangarooCount) TREESWING: \(treeSwingCount) ROCKABYE: \(rockAByeCount) WAVE: \(waveCount)/n")
     }
     
-    func gravityInReferenceFrame() -> CMAcceleration {
-        
-        let origin = self.gravity
-        let rotation = attitude.rotationMatrix
-        let matrix = rotation.inverse()
-        
-        var result = CMAcceleration()
-        result.x = origin.x * matrix.m11 + origin.y * matrix.m12 + origin.z * matrix.m13;
-        result.y = origin.x * matrix.m21 + origin.y * matrix.m22 + origin.z * matrix.m23;
-        result.z = origin.x * matrix.m31 + origin.y * matrix.m32 + origin.z * matrix.m33;
-        
-        return result
-    }
-}
-
-extension CMRotationMatrix {
-    
-    func inverse() -> CMRotationMatrix {
-        
-        let matrix = GLKMatrix3Make(Float(m11), Float(m12), Float(m13), Float(m21), Float(m22), Float(m23), Float(m31), Float(m32), Float(m33))
-        let invert = GLKMatrix3Invert(matrix, nil)
-        
-        return CMRotationMatrix(m11: Double(invert.m00), m12: Double(invert.m01), m13: Double(invert.m02),
-                                m21: Double(invert.m10), m22: Double(invert.m11), m23: Double(invert.m12),
-                                m31: Double(invert.m20), m32: Double(invert.m21), m33: Double(invert.m22))
-        
+    @IBAction func close(_ sender: UIButton) {
+        self.dismiss(animated: true)
     }
     
 }

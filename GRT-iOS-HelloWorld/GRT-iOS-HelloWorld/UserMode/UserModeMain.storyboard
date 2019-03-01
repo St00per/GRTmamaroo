@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,21 +9,86 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Bold.otf">
+            <string>Inter-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--User Mode Main View Controller-->
         <scene sceneID="ksC-a3-8lD">
             <objects>
-                <viewController id="nVw-hh-509" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jbO-Lv-68T">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController storyboardIdentifier="UserModeMainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nVw-hh-509" customClass="UserModeMainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MOB-TN-ygF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="k9E-iZ-GTh"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8r-Mf-Jga">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8a-do-Ivp">
+                                        <rect key="frame" x="80" y="595" width="254" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="k4c-9q-Xxx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="16"/>
+                                        <state key="normal" title="DETECT PATTERN">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="27"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="showPatternDetection:" destination="nVw-hh-509" eventType="touchUpInside" id="fZx-Vy-Xwc"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Detect Pattern to start detecting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koC-If-3or">
+                                        <rect key="frame" x="46" y="50" width="322" height="44.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loupe" translatesAutoresizingMaskIntoConstraints="NO" id="IyG-Co-QZH">
+                                        <rect key="frame" x="107" y="198" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="HZW-ZA-sAP"/>
+                                            <constraint firstAttribute="width" constant="200" id="NzZ-Lx-B9e"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0078431372550000003" green="0.2470588235" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IyG-Co-QZH" secondAttribute="trailing" constant="107" id="5WX-Xz-BKr"/>
+                                    <constraint firstAttribute="bottom" secondItem="m8a-do-Ivp" secondAttribute="bottom" constant="71" id="7kw-fV-IsU"/>
+                                    <constraint firstItem="m8a-do-Ivp" firstAttribute="leading" secondItem="L8r-Mf-Jga" secondAttribute="leading" constant="80" id="KbR-Q6-8OT"/>
+                                    <constraint firstItem="koC-If-3or" firstAttribute="top" secondItem="L8r-Mf-Jga" secondAttribute="top" constant="50" id="LQQ-oL-89o"/>
+                                    <constraint firstItem="m8a-do-Ivp" firstAttribute="top" secondItem="IyG-Co-QZH" secondAttribute="bottom" constant="197" id="RLZ-Fb-g9Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="koC-If-3or" secondAttribute="trailing" constant="46" id="aAy-5E-T3A"/>
+                                    <constraint firstItem="IyG-Co-QZH" firstAttribute="leading" secondItem="L8r-Mf-Jga" secondAttribute="leading" constant="107" id="nHf-PJ-KEx"/>
+                                    <constraint firstAttribute="trailing" secondItem="m8a-do-Ivp" secondAttribute="trailing" constant="80" id="nWg-xZ-eha"/>
+                                    <constraint firstItem="koC-If-3or" firstAttribute="leading" secondItem="L8r-Mf-Jga" secondAttribute="leading" constant="46" id="oJy-6U-JMQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0078431372550000003" green="0.2470588235" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="L8r-Mf-Jga" firstAttribute="leading" secondItem="irA-kE-dqW" secondAttribute="leading" id="iCF-aK-dq6"/>
+                            <constraint firstItem="L8r-Mf-Jga" firstAttribute="bottom" secondItem="irA-kE-dqW" secondAttribute="bottom" id="jA7-oi-AeT"/>
+                            <constraint firstItem="L8r-Mf-Jga" firstAttribute="trailing" secondItem="irA-kE-dqW" secondAttribute="trailing" id="p5h-hQ-aR1"/>
+                            <constraint firstItem="L8r-Mf-Jga" firstAttribute="top" secondItem="irA-kE-dqW" secondAttribute="top" id="xLM-KI-GCu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="irA-kE-dqW"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rju-Mo-Bkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-89" y="91"/>
+            <point key="canvasLocation" x="-90.400000000000006" y="90.404797601199405"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="loupe" width="204" height="204"/>
+    </resources>
 </document>
