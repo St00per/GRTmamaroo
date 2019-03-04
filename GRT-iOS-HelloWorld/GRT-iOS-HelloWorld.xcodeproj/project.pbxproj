@@ -12,6 +12,7 @@
 		0E525816222941A6005442E2 /* DetectingProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E525815222941A6005442E2 /* DetectingProcessViewController.swift */; };
 		0E6720C02229447B00957425 /* DetectingProcess.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720BE2229447A00957425 /* DetectingProcess.storyboard */; };
 		0E6720C2222944E400957425 /* PatternDetected.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720C1222944E400957425 /* PatternDetected.storyboard */; };
+		0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */; };
 		E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4775E791F5EF5D500D306FD /* TrainingViewController.swift */; };
 		E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */; };
 		E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB6D361F5EF38A00917F2B /* AcceleremoterManager.swift */; };
@@ -85,6 +86,7 @@
 		0E525815222941A6005442E2 /* DetectingProcessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectingProcessViewController.swift; sourceTree = "<group>"; };
 		0E6720BE2229447A00957425 /* DetectingProcess.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetectingProcess.storyboard; sourceTree = "<group>"; };
 		0E6720C1222944E400957425 /* PatternDetected.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PatternDetected.storyboard; sourceTree = "<group>"; };
+		0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternDetectedViewController.swift; sourceTree = "<group>"; };
 		E41951FF1F4B6D3E0016E511 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E4775E791F5EF5D500D306FD /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				0E6720C1222944E400957425 /* PatternDetected.storyboard */,
 				0E52581322294142005442E2 /* UserModeMainViewController.swift */,
 				0E525815222941A6005442E2 /* DetectingProcessViewController.swift */,
+				0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */,
 			);
 			path = UserMode;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 			files = (
 				0E525816222941A6005442E2 /* DetectingProcessViewController.swift in Sources */,
 				0E52581422294142005442E2 /* UserModeMainViewController.swift in Sources */,
+				0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */,
 				E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */,
 				E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */,
 				E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */,
