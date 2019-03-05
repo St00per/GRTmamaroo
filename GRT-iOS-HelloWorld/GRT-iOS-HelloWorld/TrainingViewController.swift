@@ -127,8 +127,8 @@ class TrainingViewController: UIViewController {
     }
     
     @IBAction func showUserMode(_ sender: UIButton) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "DetectingProcess", bundle: nil)
-        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "DetectingProcessViewController") as? DetectingProcessViewController else {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "UserModeMain", bundle: nil)
+        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "UserModeMainViewController") as? UserModeMainViewController else {
             return
         }
         show(desVC, sender: nil)

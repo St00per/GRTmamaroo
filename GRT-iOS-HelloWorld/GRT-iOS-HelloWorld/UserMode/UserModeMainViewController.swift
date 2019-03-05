@@ -24,5 +24,8 @@ class UserModeMainViewController: UIViewController {
         show(desVC, sender: nil)
     }
     
+    @IBAction func closeUserMode(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
 }
 

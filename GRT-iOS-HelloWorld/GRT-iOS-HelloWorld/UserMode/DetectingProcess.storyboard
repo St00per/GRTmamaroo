@@ -30,15 +30,11 @@
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="rNW-ws-bW0">
-                                        <rect key="frame" x="106.66666666666669" y="170.33333333333337" width="201" height="215"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="215" id="5rO-bJ-Jvu"/>
-                                            <constraint firstAttribute="width" constant="201" id="g1z-gW-4Pv"/>
-                                        </constraints>
+                                        <rect key="frame" x="60.666666666666657" y="239.66666666666669" width="293" height="296.00000000000006"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Make movements with your phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PI6-ch-EtA">
-                                        <rect key="frame" x="46" y="111" width="322" height="22.333333333333343"/>
-                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="19"/>
+                                        <rect key="frame" x="46" y="121.66666666666666" width="322" height="48"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -53,14 +49,31 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detecting Pattern ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdx-bU-yrl">
-                                        <rect key="frame" x="46" y="77" width="322" height="23"/>
-                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="19"/>
+                                        <rect key="frame" x="46" y="77" width="322" height="33.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uT5-Ni-eDh">
-                                        <rect key="frame" x="189" y="526" width="37" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l87-Mo-A2n">
+                                        <rect key="frame" x="359" y="25" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Ah9-mi-woK"/>
+                                            <constraint firstAttribute="height" constant="30" id="FNZ-rd-Qpo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="17"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="close:" destination="MhV-r4-vU3" eventType="touchUpInside" id="wAV-U6-VIx"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uT5-Ni-eDh">
+                                        <rect key="frame" x="188.66666666666666" y="572" width="37" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="eeZ-4e-2aQ"/>
+                                            <constraint firstAttribute="width" constant="37" id="skk-ka-bVe"/>
+                                        </constraints>
                                     </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ8-Tv-sHV">
                                         <rect key="frame" x="339" y="370" width="46" height="30"/>
@@ -71,34 +84,22 @@
                                             <action selector="printPoints:" destination="MhV-r4-vU3" eventType="touchUpInside" id="YEZ-uG-4vv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l87-Mo-A2n">
-                                        <rect key="frame" x="359" y="25" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="Ah9-mi-woK"/>
-                                            <constraint firstAttribute="height" constant="30" id="FNZ-rd-Qpo"/>
-                                        </constraints>
-                                        <state key="normal" title="X">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="close:" destination="MhV-r4-vU3" eventType="touchUpInside" id="wAV-U6-VIx"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0078431372550000003" green="0.2470588235" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="qdx-bU-yrl" firstAttribute="top" secondItem="URq-xJ-DQe" secondAttribute="top" constant="77" id="6e5-jh-13O"/>
                                     <constraint firstItem="PI6-ch-EtA" firstAttribute="top" secondItem="qdx-bU-yrl" secondAttribute="bottom" constant="11" id="F56-I1-ivQ"/>
                                     <constraint firstAttribute="bottom" secondItem="6ad-7h-1q7" secondAttribute="bottom" constant="70" id="K97-Is-Rwl"/>
+                                    <constraint firstItem="uT5-Ni-eDh" firstAttribute="top" secondItem="rNW-ws-bW0" secondAttribute="bottom" constant="36.333333333333258" id="Lvt-Xo-qhm"/>
                                     <constraint firstItem="6ad-7h-1q7" firstAttribute="centerX" secondItem="URq-xJ-DQe" secondAttribute="centerX" id="PxJ-FR-AKZ"/>
                                     <constraint firstAttribute="trailing" secondItem="qdx-bU-yrl" secondAttribute="trailing" constant="46" id="RKY-pU-Qhd"/>
                                     <constraint firstAttribute="trailing" secondItem="PI6-ch-EtA" secondAttribute="trailing" constant="46" id="Ryh-Jk-vEz"/>
-                                    <constraint firstItem="6ad-7h-1q7" firstAttribute="top" secondItem="rNW-ws-bW0" secondAttribute="bottom" constant="86" id="Zky-FD-0WA"/>
-                                    <constraint firstItem="rNW-ws-bW0" firstAttribute="top" secondItem="PI6-ch-EtA" secondAttribute="bottom" constant="37" id="cwe-x1-xLM"/>
+                                    <constraint firstItem="rNW-ws-bW0" firstAttribute="top" secondItem="PI6-ch-EtA" secondAttribute="bottom" constant="70" id="cwe-x1-xLM"/>
                                     <constraint firstItem="rNW-ws-bW0" firstAttribute="centerX" secondItem="URq-xJ-DQe" secondAttribute="centerX" id="e0i-6D-a0o"/>
                                     <constraint firstItem="PI6-ch-EtA" firstAttribute="leading" secondItem="URq-xJ-DQe" secondAttribute="leading" constant="46" id="eCk-pL-bBp"/>
                                     <constraint firstItem="qdx-bU-yrl" firstAttribute="leading" secondItem="URq-xJ-DQe" secondAttribute="leading" constant="46" id="g5F-6R-r2q"/>
                                     <constraint firstItem="l87-Mo-A2n" firstAttribute="top" secondItem="URq-xJ-DQe" secondAttribute="top" constant="25" id="ikV-tK-KEq"/>
+                                    <constraint firstItem="uT5-Ni-eDh" firstAttribute="centerX" secondItem="URq-xJ-DQe" secondAttribute="centerX" id="rNr-I6-4uz"/>
                                     <constraint firstAttribute="trailing" secondItem="l87-Mo-A2n" secondAttribute="trailing" constant="25" id="tsg-b5-1AW"/>
                                 </constraints>
                                 <variation key="default">

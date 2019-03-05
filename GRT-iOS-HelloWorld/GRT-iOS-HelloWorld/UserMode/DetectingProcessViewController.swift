@@ -106,7 +106,7 @@ class DetectingProcessViewController: UIViewController {
             self.vector.pushBack(deviceMotion.rotationRate.x)
             self.vector.pushBack(deviceMotion.rotationRate.y)
             self.vector.pushBack(deviceMotion.rotationRate.z)
-            if deviceMotion.userAcceleration.z >= 1 || deviceMotion.userAcceleration.z <= -1 {
+            if deviceMotion.userAcceleration.z >= 0.8 || deviceMotion.userAcceleration.z <= -0.8 {
                 self.frequencyCount += 1
             }
             
@@ -172,19 +172,19 @@ class DetectingProcessViewController: UIViewController {
     
     func speedCheck() -> Int {
         let speedIndex = Double(frequencyCount)/predictionTime
-        if speedIndex > 0 && speedIndex < 15 {
+        if speedIndex > 0 && speedIndex < 10 {
             return 1
         }
-        if speedIndex > 15 && speedIndex < 25 {
+        if speedIndex > 10 && speedIndex < 20 {
             return 2
         }
-        if speedIndex > 25 && speedIndex < 35 {
+        if speedIndex > 20 && speedIndex < 35 {
             return 3
         }
-        if speedIndex > 35 && speedIndex < 45 {
+        if speedIndex > 35 && speedIndex < 50 {
             return 4
         }
-        if speedIndex > 45 {
+        if speedIndex > 50 {
             return 5
         }
         return 0
