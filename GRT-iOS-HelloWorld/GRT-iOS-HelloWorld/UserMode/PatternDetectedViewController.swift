@@ -23,7 +23,7 @@ class PatternDetectedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         patternLabel.text = detectedPattern
-        patternImage.image = UIImage(named: "Kangaroo")
+        patternImage.image = UIImage(named: detectedPattern)
         patternSpeedSlider.value = Float(patternSpeed)
     }
     
