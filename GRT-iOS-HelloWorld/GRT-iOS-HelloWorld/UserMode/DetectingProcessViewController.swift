@@ -53,6 +53,7 @@ class DetectingProcessViewController: UIViewController {
         frequencyCount = 0
         gestureCounts = [0,0,0,0,0]
         getureIsRecognized = false
+        predictionTime = 0
     }
     
     func resetGestureCount() {
@@ -143,7 +144,7 @@ class DetectingProcessViewController: UIViewController {
         print ("CAR RIDE: \(carRideCount) KANGAROO: \(kangarooCount) TREESWING: \(treeSwingCount) ROCKABYE: \(rockAByeCount) WAVE: \(waveCount)/n")
         let sortedArray = gestureCounts.sorted()
         
-        if frequencyCount > 1000 {
+        if frequencyCount > 500 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
@@ -155,8 +156,8 @@ class DetectingProcessViewController: UIViewController {
             show(desVC, sender: nil)
         }
         
-        if (gestureCounts.max() ?? 0) - sortedArray[1] > 5 {
-        //if gestureCounts.max()! > 5 {
+        if (gestureCounts.max() ?? 0) - sortedArray[1] >= 5 {
+            let speedIndex = Double(frequencyCount)/predictionTime
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
@@ -170,20 +171,20 @@ class DetectingProcessViewController: UIViewController {
     }
     
     func speedCheck() -> Int {
-        
-        if frequencyCount > 0 && frequencyCount < 20 {
+        let speedIndex = Double(frequencyCount)/predictionTime
+        if speedIndex > 0 && speedIndex < 15 {
             return 1
         }
-        if frequencyCount > 20 && frequencyCount < 50 {
+        if speedIndex > 15 && speedIndex < 25 {
             return 2
         }
-        if frequencyCount > 50 && frequencyCount < 100 {
+        if speedIndex > 25 && speedIndex < 35 {
             return 3
         }
-        if frequencyCount > 100 && frequencyCount < 200 {
+        if speedIndex > 35 && speedIndex < 45 {
             return 4
         }
-        if frequencyCount > 200 {
+        if speedIndex > 45 {
             return 5
         }
         return 0

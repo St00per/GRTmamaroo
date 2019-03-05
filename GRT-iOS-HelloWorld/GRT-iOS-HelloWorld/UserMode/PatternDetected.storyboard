@@ -159,6 +159,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="patternHeader" destination="ln8-cJ-VDt" id="t8B-5U-m2p"/>
                         <outlet property="patternImage" destination="x4n-KG-c0h" id="C4u-gf-k5K"/>
                         <outlet property="patternLabel" destination="2RW-DC-5wl" id="kbP-o5-Q0J"/>
                         <outlet property="patternSpeedSlider" destination="G5A-d5-VYR" id="fDb-ff-Idn"/>

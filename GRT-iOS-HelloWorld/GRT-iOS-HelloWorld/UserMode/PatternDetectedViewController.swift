@@ -13,6 +13,7 @@ class PatternDetectedViewController: UIViewController {
     var detectedPattern: String = ""
     var patternSpeed: Int = 0
     
+    @IBOutlet weak var patternHeader: UILabel!
     @IBOutlet weak var patternLabel: UILabel!
     @IBOutlet weak var patternImage: UIImageView!
     @IBOutlet weak var patternSpeedSlider: UISlider!
@@ -25,6 +26,9 @@ class PatternDetectedViewController: UIViewController {
         patternLabel.text = detectedPattern
         patternImage.image = UIImage(named: detectedPattern)
         patternSpeedSlider.value = Float(patternSpeed)
+        if patternLabel.text == "Error" {
+            patternHeader.text = "Pattern not detected"
+        }
     }
     
     @IBAction func tryAgain(_ sender: UIButton) {
