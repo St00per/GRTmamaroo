@@ -98,7 +98,9 @@ class DetectingProcessViewController: UIViewController {
     
     func performGesturePrediction() {
         accelerometerManager.start { (deviceMotion) -> Void in
-            self.predictionTime += 0.01
+            if self.frequencyCount > 1 {
+                self.predictionTime += 0.01
+            }
             self.vector.clear()
             self.vector.pushBack(deviceMotion.userAcceleration.x)
             self.vector.pushBack(deviceMotion.userAcceleration.y)
@@ -112,7 +114,6 @@ class DetectingProcessViewController: UIViewController {
             
             //Use the incoming accellerometer data to predict what the performed gesture class is
             self.pipeline?.predict(self.vector)
-            
             DispatchQueue.main.async {
                 if !self.getureIsRecognized {
                     self.updateGestureCountLabels(gesture: (self.pipeline?.predictedClassLabel)!)
@@ -144,7 +145,7 @@ class DetectingProcessViewController: UIViewController {
         print ("CAR RIDE: \(carRideCount) KANGAROO: \(kangarooCount) TREESWING: \(treeSwingCount) ROCKABYE: \(rockAByeCount) WAVE: \(waveCount)/n")
         let sortedArray = gestureCounts.sorted()
         
-        if frequencyCount > 500 {
+        if frequencyCount > 300 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
@@ -172,19 +173,19 @@ class DetectingProcessViewController: UIViewController {
     
     func speedCheck() -> Int {
         let speedIndex = Double(frequencyCount)/predictionTime
-        if speedIndex > 0 && speedIndex < 10 {
+        if speedIndex > 0 && speedIndex < 20 {
             return 1
         }
-        if speedIndex > 10 && speedIndex < 20 {
+        if speedIndex > 20 && speedIndex < 30 {
             return 2
         }
-        if speedIndex > 20 && speedIndex < 35 {
+        if speedIndex > 30 && speedIndex < 45 {
             return 3
         }
-        if speedIndex > 35 && speedIndex < 50 {
+        if speedIndex > 45 && speedIndex < 55 {
             return 4
         }
-        if speedIndex > 50 {
+        if speedIndex > 55 {
             return 5
         }
         return 0

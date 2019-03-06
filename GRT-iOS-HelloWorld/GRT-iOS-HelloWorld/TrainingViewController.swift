@@ -97,13 +97,29 @@ class TrainingViewController: UIViewController {
     
     @IBAction func savePipeline(_ sender: Any) {
         // Set URL for saving the pipeline to
+        let documentsUrlString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
+        let tempDirectory = URL(fileURLWithPath: documentsUrlString + "/Temp")
+        //create Temp directory if it does not exist
+        let tempDirectoryString = documentsUrlString + "/Temp"
+        var objectBool: ObjCBool = true
+        let isExist = FileManager.default.fileExists(atPath: tempDirectoryString, isDirectory: &objectBool)
+        if !isExist {
+            do {
+                try FileManager.default.createDirectory(atPath: tempDirectoryString, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                let userAlert = UIAlertController(title: "Error", message: "Failed to create temp directory", preferredStyle: .alert)
+                self.present(userAlert, animated: true, completion: { _ in })
+                let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+                userAlert.addAction(cancel)
+            }
+        }
         
-        // Remove the pipeline if it already exists
-        let _ = try? FileManager.default.removeItem(at: pipelineURL)
+        //Save current pipeline and training data as a CSV file to temp before deleting previous
+        
+        let pipelineTempURL = tempDirectory.appendingPathComponent("train.grt")
 
-        let pipelineSaveResult = self.pipeline?.save(pipelineURL)
+        let pipelineSaveResult = self.pipeline?.save(pipelineTempURL)
         if !pipelineSaveResult! {
             let userAlert = UIAlertController(title: "Error", message: "Failed to save pipeline", preferredStyle: .alert)
             self.present(userAlert, animated: true, completion: { _ in })
@@ -111,18 +127,28 @@ class TrainingViewController: UIViewController {
             userAlert.addAction(cancel)
         }
         
-        // Save the training data as a CSV file
-        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
+        // Save the training data as a CSV file to temp directory
+        let classificiationDataTempURL = tempDirectory.appendingPathComponent("trainingData.csv")
 
-        let _ = try? FileManager.default.removeItem(at: classificiationDataURL)
-
-        let classificationSaveResult = self.pipeline?.saveClassificationData(classificiationDataURL)
+        let classificationSaveResult = self.pipeline?.saveClassificationData(classificiationDataTempURL)
         
         if !classificationSaveResult! {
             let userAlert = UIAlertController(title: "Error", message: "Failed to save classification data", preferredStyle: .alert)
             self.present(userAlert, animated: true, completion: { _ in })
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             userAlert.addAction(cancel)
+        }
+        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
+        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
+        
+        if pipelineSaveResult ?? false, classificationSaveResult ?? false {
+            // Remove the pipeline if it already exists if temp save is ok
+            let _ = try? FileManager.default.removeItem(at: pipelineURL)
+            let _ = try? FileManager.default.removeItem(at: classificiationDataURL)
+        
+            //Copy files from temporary folder
+            let _ = try? FileManager.default.copyItem(at: pipelineTempURL, to: pipelineURL)
+            let _ = try? FileManager.default.copyItem(at: classificiationDataTempURL, to: classificiationDataURL)
         }
     }
     
