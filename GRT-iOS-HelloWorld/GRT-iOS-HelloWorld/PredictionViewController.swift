@@ -109,16 +109,12 @@ class PredictionViewController: UIViewController {
             self.vector.pushBack(deviceMotion.rotationRate.x)
             self.vector.pushBack(deviceMotion.rotationRate.y)
             self.vector.pushBack(deviceMotion.rotationRate.z)
-//            self.vector.pushBack(deviceMotion.attitude.pitch)
-//            self.vector.pushBack(deviceMotion.attitude.yaw)
-//            self.vector.pushBack(deviceMotion.attitude.roll)
             
             //Use the incoming accellerometer data to predict what the performed gesture class is
             self.pipeline?.predict(self.vector)
 
             DispatchQueue.main.async {
                 self.updateGestureCountLabels(gesture: (self.pipeline?.predictedClassLabel)!)
-                //print("PRECITED GESTURE", self.pipeline?.predictedClassLabel ?? 0);
                 self.graphView.addData([deviceMotion.userAcceleration.x, deviceMotion.userAcceleration.y, deviceMotion.userAcceleration.z])
             }
             

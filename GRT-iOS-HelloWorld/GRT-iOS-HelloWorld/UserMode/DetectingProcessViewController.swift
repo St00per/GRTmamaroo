@@ -11,12 +11,7 @@ import GRTiOS
 import SwiftR
 
 class DetectingProcessViewController: UIViewController {
-    
-    var carRideCount: UInt = 0
-    var kangarooCount: UInt = 0
-    var treeSwingCount: UInt = 0
-    var rockAByeCount: UInt = 0
-    var waveCount: UInt = 0
+
     var currentClassLabel = 0 as UInt
     var labelUpdateTime = Date.timeIntervalSinceReferenceDate
     var predictionTime: Double = 0
@@ -34,17 +29,17 @@ class DetectingProcessViewController: UIViewController {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.pipeline = appDelegate.pipeline!
+        initPipeline()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        initPipeline()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         accelerometerManager.stop()
-        resetGestureCount()
         activityIndicator.stopAnimating()
     }
     
@@ -55,15 +50,7 @@ class DetectingProcessViewController: UIViewController {
         getureIsRecognized = false
         predictionTime = 0
     }
-    
-    func resetGestureCount() {
-        carRideCount = 0
-        kangarooCount = 0
-        treeSwingCount = 0
-        rockAByeCount = 0
-        waveCount = 0
-    }
-    
+
     func initPipeline() {
         
         //Load the GRT pipeline and the training data files from the documents directory
@@ -108,7 +95,7 @@ class DetectingProcessViewController: UIViewController {
             self.vector.pushBack(deviceMotion.rotationRate.x)
             self.vector.pushBack(deviceMotion.rotationRate.y)
             self.vector.pushBack(deviceMotion.rotationRate.z)
-            if deviceMotion.userAcceleration.z >= 0.8 || deviceMotion.userAcceleration.z <= -0.8 {
+            if deviceMotion.userAcceleration.z >= 0.4 || deviceMotion.userAcceleration.z <= -0.4 {
                 self.frequencyCount += 1
             }
             
@@ -127,23 +114,17 @@ class DetectingProcessViewController: UIViewController {
         if gesture == 0 {
             //do nothing
         } else if (gesture == 1) {
-            carRideCount += 1
             gestureCounts[0] += 1
         } else if (gesture == 2) {
-            kangarooCount += 1
             gestureCounts[1] += 1
         } else if (gesture == 3) {
-            treeSwingCount += 1
             gestureCounts[2] += 1
         } else if (gesture == 4) {
-            rockAByeCount += 1
             gestureCounts[3] += 1
         } else if (gesture == 5) {
-            waveCount += 1
             gestureCounts[4] += 1
         }
-        print ("CAR RIDE: \(carRideCount) KANGAROO: \(kangarooCount) TREESWING: \(treeSwingCount) ROCKABYE: \(rockAByeCount) WAVE: \(waveCount)/n")
-        let sortedArray = gestureCounts.sorted()
+        print (gestureCounts)
         
         if frequencyCount > 300 {
             accelerometerManager.stop()
@@ -157,8 +138,8 @@ class DetectingProcessViewController: UIViewController {
             show(desVC, sender: nil)
         }
         
-        if (gestureCounts.max() ?? 0) - sortedArray[1] >= 5 {
-            let speedIndex = Double(frequencyCount)/predictionTime
+        let sortedArray = gestureCounts.sorted()
+        if (gestureCounts.max() ?? 0) - sortedArray[3] >= 4 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
@@ -173,19 +154,19 @@ class DetectingProcessViewController: UIViewController {
     
     func speedCheck() -> Int {
         let speedIndex = Double(frequencyCount)/predictionTime
-        if speedIndex > 0 && speedIndex < 20 {
+        if speedIndex > 0 && speedIndex < 5 {
             return 1
         }
-        if speedIndex > 20 && speedIndex < 30 {
+        if speedIndex > 5 && speedIndex < 10 {
             return 2
         }
-        if speedIndex > 30 && speedIndex < 45 {
+        if speedIndex > 10 && speedIndex < 15 {
             return 3
         }
-        if speedIndex > 45 && speedIndex < 55 {
+        if speedIndex > 15 && speedIndex < 20 {
             return 4
         }
-        if speedIndex > 55 {
+        if speedIndex > 20 {
             return 5
         }
         return 0
@@ -215,5 +196,4 @@ class DetectingProcessViewController: UIViewController {
     @IBAction func close(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
-    
 }
