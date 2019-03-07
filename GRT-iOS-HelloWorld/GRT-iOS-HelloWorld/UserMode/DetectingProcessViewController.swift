@@ -24,6 +24,7 @@ class DetectingProcessViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var countsView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,13 +104,24 @@ class DetectingProcessViewController: UIViewController {
             self.pipeline?.predict(self.vector)
             DispatchQueue.main.async {
                 if !self.getureIsRecognized {
-                    self.updateGestureCountLabels(gesture: (self.pipeline?.predictedClassLabel)!)
+                    self.updateGestureCounts(gesture: (self.pipeline?.predictedClassLabel)!)
                 }
             }
         }
     }
     
-    func updateGestureCountLabels(gesture: UInt) {
+    func updateCountLabels() {
+        let counts = countsView.subviews
+        
+        for index in 0..<counts.count {
+            if let label = counts[index] as? UILabel {
+                label.text = String(gestureCounts[index])
+            }
+        }
+        
+    }
+    
+    func updateGestureCounts(gesture: UInt) {
         activityIndicator.startAnimating()
         if gesture == 0 {
             //do nothing
@@ -125,8 +137,9 @@ class DetectingProcessViewController: UIViewController {
             gestureCounts[4] += 1
         }
         print (gestureCounts)
+        updateCountLabels()
         
-        if frequencyCount > 300 {
+        if frequencyCount > 350 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
