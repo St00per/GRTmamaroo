@@ -18,7 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         //Create an instance of a gesture recognition pipeline to be used as a global variable, accesible by both our training and prediction view controllers
         self.pipeline = GestureRecognitionPipeline()
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
+        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
+        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
+        
+        let pipelineResult:Bool = pipeline!.load(pipelineURL)
+        let classificationDataResult:Bool = pipeline!.loadClassificationData(classificiationDataURL)
+        
+        if (classificationDataResult && pipelineResult) {
+            pipeline?.train()
+        }
         return true
     }
 

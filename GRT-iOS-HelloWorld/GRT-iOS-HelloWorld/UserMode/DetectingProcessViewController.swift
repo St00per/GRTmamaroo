@@ -30,12 +30,12 @@ class DetectingProcessViewController: UIViewController {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.pipeline = appDelegate.pipeline!
-        initPipeline()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        performGesturePrediction()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,37 +52,6 @@ class DetectingProcessViewController: UIViewController {
         predictionTime = 0
     }
 
-    func initPipeline() {
-        
-        //Load the GRT pipeline and the training data files from the documents directory
-        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        
-        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
-        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
-        
-        let pipelineResult:Bool = pipeline!.load(pipelineURL)
-        let classificationDataResult:Bool = pipeline!.loadClassificationData(classificiationDataURL)
-        
-        if pipelineResult == false {
-            let userAlert = UIAlertController(title: "Error", message: "Couldn't load pipeline", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-            userAlert.addAction(cancel)
-            self.present(userAlert, animated: true, completion: { _ in })
-        }
-        
-        if classificationDataResult == false {
-            let userAlert = UIAlertController(title: "Error", message: "Couldn't load classification data", preferredStyle: .alert)
-            self.present(userAlert, animated: true, completion: { _ in })
-            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-            userAlert.addAction(cancel)
-        }
-            
-            //If the files have been loaded successfully, we can train the pipeline, and then start real-time gesture prediction
-        else if (classificationDataResult && pipelineResult) {
-            pipeline?.train()
-            performGesturePrediction()
-        }
-    }
     
     func performGesturePrediction() {
         accelerometerManager.start { (deviceMotion) -> Void in
@@ -139,7 +108,7 @@ class DetectingProcessViewController: UIViewController {
         print (gestureCounts)
         updateCountLabels()
         
-        if frequencyCount > 350 {
+        if frequencyCount > 350 || predictionTime > 8 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
@@ -152,7 +121,7 @@ class DetectingProcessViewController: UIViewController {
         }
         
         let sortedArray = gestureCounts.sorted()
-        if (gestureCounts.max() ?? 0) - sortedArray[3] >= 4 {
+        if (gestureCounts.max() ?? 0) - sortedArray[3] >= 3 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)

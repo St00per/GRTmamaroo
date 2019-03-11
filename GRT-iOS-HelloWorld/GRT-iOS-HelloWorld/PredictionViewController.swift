@@ -44,8 +44,13 @@ class PredictionViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.pipeline = appDelegate.pipeline!
 
-        initPipeline()
+        //initPipeline()
         graphView.totalChannelsToDisplay = 3
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        performGesturePrediction()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -146,7 +151,5 @@ class PredictionViewController: UIViewController {
             let waveCountVal = String(waveCount)
             waveCountLabel.text = ("Wave: " + waveCountVal)
         }
-        
     }
-
 }
