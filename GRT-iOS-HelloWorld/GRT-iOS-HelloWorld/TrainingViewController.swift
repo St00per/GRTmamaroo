@@ -42,10 +42,10 @@ class TrainingViewController: UIViewController {
 
         //Create an instance of a GRT pipeline
         self.pipeline = appDelegate.pipeline!
-        initPipeline()
+        //initPipeline()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         startAccellerometer()
     }
     

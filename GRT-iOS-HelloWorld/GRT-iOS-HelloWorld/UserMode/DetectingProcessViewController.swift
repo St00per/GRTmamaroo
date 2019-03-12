@@ -40,6 +40,7 @@ class DetectingProcessViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        getureIsRecognized = true
         accelerometerManager.stop()
         activityIndicator.stopAnimating()
     }
@@ -65,15 +66,15 @@ class DetectingProcessViewController: UIViewController {
             self.vector.pushBack(deviceMotion.rotationRate.x)
             self.vector.pushBack(deviceMotion.rotationRate.y)
             self.vector.pushBack(deviceMotion.rotationRate.z)
-            if deviceMotion.userAcceleration.z >= 0.4 || deviceMotion.userAcceleration.z <= -0.4 {
+            if deviceMotion.userAcceleration.z >= 0.3 || deviceMotion.userAcceleration.z <= -0.3 {
                 self.frequencyCount += 1
             }
             
             //Use the incoming accellerometer data to predict what the performed gesture class is
-            self.pipeline?.predict(self.vector)
-            DispatchQueue.main.async {
-                if !self.getureIsRecognized {
-                    self.updateGestureCounts(gesture: (self.pipeline?.predictedClassLabel)!)
+            if !self.getureIsRecognized {
+                self.pipeline?.predict(self.vector)
+                DispatchQueue.main.async {
+                        self.updateGestureCounts(gesture: (self.pipeline?.predictedClassLabel)!)
                 }
             }
         }
@@ -88,6 +89,110 @@ class DetectingProcessViewController: UIViewController {
             }
         }
         
+    }
+    
+    func patternCheck() -> String {
+        guard let maxCount = gestureCounts.max() else { return "" }
+        let gestureIndex = gestureCounts.firstIndex{ $0 == maxCount }
+        
+        switch gestureIndex {
+        case 0:
+            return "CarRide"
+        case 1:
+            return "Kangaroo"
+        case 2:
+            return "TreeSwing"
+        case 3:
+            return "RockABye"
+        case 4:
+            return "Wave"
+        default:
+            return ""
+        }
+    }
+    
+    func speedCheck(pattern: String) -> Int {
+        let speedIndex = Double(frequencyCount)/predictionTime
+        let speedValue = pattern
+        switch speedValue {
+        case "CarRide":
+            switch speedIndex {
+            case 0..<5:
+                return 1
+            case 5..<10:
+                return 2
+            case 10..<15:
+                return 3
+            case 15..<20:
+                return 4
+            case 20..<500:
+                return 5
+            default:
+                return 0
+            }
+        case "Kangaroo":
+            switch speedIndex {
+            case 0..<5:
+                return 1
+            case 5..<10:
+                return 2
+            case 10..<15:
+                return 3
+            case 15..<20:
+                return 4
+            case 20..<500:
+                return 5
+            default:
+                return 0
+            }
+        case "TreeSwing":
+            switch speedIndex {
+            case 0..<5:
+                return 1
+            case 5..<10:
+                return 2
+            case 10..<15:
+                return 3
+            case 15..<20:
+                return 4
+            case 20..<500:
+                return 5
+            default:
+                return 0
+            }
+        case "RockABye":
+            switch speedIndex {
+            case 0..<5:
+                return 1
+            case 5..<10:
+                return 2
+            case 10..<15:
+                return 3
+            case 15..<20:
+                return 4
+            case 20..<500:
+                return 5
+            default:
+                return 0
+            }
+        case "Wave":
+            switch speedIndex {
+            case 0..<5:
+                return 1
+            case 5..<10:
+                return 2
+            case 10..<15:
+                return 3
+            case 15..<20:
+                return 4
+            case 20..<500:
+                return 5
+            default:
+                return 0
+            }
+        default:
+            return 0
+        }
     }
     
     func updateGestureCounts(gesture: UInt) {
@@ -108,7 +213,7 @@ class DetectingProcessViewController: UIViewController {
         print (gestureCounts)
         updateCountLabels()
         
-        if frequencyCount > 350 || predictionTime > 8 {
+        if frequencyCount > 350 || predictionTime > 9 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
@@ -121,59 +226,22 @@ class DetectingProcessViewController: UIViewController {
         }
         
         let sortedArray = gestureCounts.sorted()
-        if (gestureCounts.max() ?? 0) - sortedArray[3] >= 3 {
+        if ((gestureCounts.max() ?? 0) - sortedArray[3] >= 3 && predictionTime > 3) || (gestureCounts.max() ?? 0) >= 7 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
             guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PatternDetectedViewController") as? PatternDetectedViewController else {
                 return
             }
-            desVC.patternSpeed = speedCheck()
             desVC.detectedPattern = patternCheck()
+            desVC.patternSpeed = speedCheck(pattern: patternCheck())
             show(desVC, sender: nil)
         }
     }
     
-    func speedCheck() -> Int {
-        let speedIndex = Double(frequencyCount)/predictionTime
-        if speedIndex > 0 && speedIndex < 5 {
-            return 1
-        }
-        if speedIndex > 5 && speedIndex < 10 {
-            return 2
-        }
-        if speedIndex > 10 && speedIndex < 15 {
-            return 3
-        }
-        if speedIndex > 15 && speedIndex < 20 {
-            return 4
-        }
-        if speedIndex > 20 {
-            return 5
-        }
-        return 0
-    }
     
-    func patternCheck() -> String {
-        guard let maxCount = gestureCounts.max() else { return "" }
-        let gestureIndex = gestureCounts.firstIndex{ $0 == maxCount }
-        if gestureIndex == 0 {
-            return "CarRide"
-        }
-        if gestureIndex == 1 {
-            return "Kangaroo"
-        }
-        if gestureIndex == 2 {
-            return "TreeSwing"
-        }
-        if gestureIndex == 3 {
-            return "RockABye"
-        }
-        if gestureIndex == 4 {
-            return "Wave"
-        }
-        return ""
-    }
+    
+    
     
     @IBAction func close(_ sender: UIButton) {
         self.dismiss(animated: true)
