@@ -21,6 +21,7 @@ class DetectingProcessViewController: UIViewController {
     let vector = VectorDouble()
     var pipelineOne: GestureRecognitionPipeline?
     var pipelineTwo: GestureRecognitionPipeline?
+    var pipelineThree: GestureRecognitionPipeline?
     
     fileprivate let accelerometerManager = AccelerometerManager()
     
@@ -33,6 +34,7 @@ class DetectingProcessViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.pipelineOne = appDelegate.pipelineOne!
         self.pipelineTwo = appDelegate.pipelineTwo!
+        self.pipelineThree = appDelegate.pipelineThree!
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,9 +78,11 @@ class DetectingProcessViewController: UIViewController {
             if !self.getureIsRecognized {
                 self.pipelineOne?.predict(self.vector)
                 self.pipelineTwo?.predict(self.vector)
+                self.pipelineThree?.predict(self.vector)
                 DispatchQueue.main.async {
                     self.updateGestureCounts(gesture: (self.pipelineOne?.predictedClassLabel)!, pipelineNumber: 1)
                     self.updateGestureCounts(gesture: (self.pipelineTwo?.predictedClassLabel)!, pipelineNumber: 2)
+                    self.updateGestureCounts(gesture: (self.pipelineThree?.predictedClassLabel)!, pipelineNumber: 3)
                 }
             }
         }
@@ -92,7 +96,6 @@ class DetectingProcessViewController: UIViewController {
                 label.text = String(gestureCounts[index])
             }
         }
-        
     }
     
     func patternCheck() -> String {
@@ -202,12 +205,17 @@ class DetectingProcessViewController: UIViewController {
     func updateGestureCounts(gesture: UInt, pipelineNumber: Int) {
         if pipelineNumber == 1 {
             if gesture > 0 {
-            print ("PIPELINE ONE: \(gesture)")
+            gestureCounts[0] += 1
             }
         }
         if pipelineNumber == 2 {
             if gesture > 0 {
-            print ("PIPELINE TWO: \(gesture)")
+            gestureCounts[1] += 1
+            }
+        }
+        if pipelineNumber == 3 {
+            if gesture > 0 {
+                gestureCounts[2] += 1
             }
         }
 //        activityIndicator.startAnimating()
@@ -224,8 +232,8 @@ class DetectingProcessViewController: UIViewController {
 //        } else if (gesture == 5) {
 //            gestureCounts[4] += 1
 //        }
-//        print (gestureCounts)
-//        updateCountLabels()
+        print (gestureCounts)
+        updateCountLabels()
 //
 //        if frequencyCount > 350 || predictionTime > 9 {
 //            accelerometerManager.stop()

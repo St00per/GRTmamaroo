@@ -41,7 +41,7 @@ class TrainingViewController: UIViewController {
         graphView.totalChannelsToDisplay = 3
 
         //Create an instance of a GRT pipeline
-        self.pipeline = appDelegate.pipelineOne!
+        self.pipeline = appDelegate.pipelineThree!
         //initPipeline()
     }
     
@@ -93,8 +93,6 @@ class TrainingViewController: UIViewController {
         trainButton.isSelected = false
     }
   
-    
-    
     @IBAction func savePipeline(_ sender: Any) {
         // Set URL for saving the pipeline to
         let documentsUrlString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -117,7 +115,7 @@ class TrainingViewController: UIViewController {
         
         //Save current pipeline and training data as a CSV file to temp before deleting previous
         
-        let pipelineTempURL = tempDirectory.appendingPathComponent("train.grt")
+        let pipelineTempURL = tempDirectory.appendingPathComponent("trainThree.grt")
 
         let pipelineSaveResult = self.pipeline?.save(pipelineTempURL)
         if !pipelineSaveResult! {
@@ -128,7 +126,7 @@ class TrainingViewController: UIViewController {
         }
         
         // Save the training data as a CSV file to temp directory
-        let classificiationDataTempURL = tempDirectory.appendingPathComponent("trainingData.csv")
+        let classificiationDataTempURL = tempDirectory.appendingPathComponent("trainingThreeData.csv")
 
         let classificationSaveResult = self.pipeline?.saveClassificationData(classificiationDataTempURL)
         
@@ -138,8 +136,9 @@ class TrainingViewController: UIViewController {
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             userAlert.addAction(cancel)
         }
-        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
-        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
+        let pipelineURL = documentsUrl.appendingPathComponent("trainThree.grt")
+        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingThreeData.csv")
+        
         
         if pipelineSaveResult ?? false, classificationSaveResult ?? false {
             // Remove the pipeline if it already exists if temp save is ok

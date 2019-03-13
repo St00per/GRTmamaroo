@@ -14,30 +14,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var pipelineOne: GestureRecognitionPipeline?
     var pipelineTwo: GestureRecognitionPipeline?
+    var pipelineThree: GestureRecognitionPipeline?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //Create an instance of a gesture recognition pipeline to be used as a global variable, accesible by both our training and prediction view controllers
         self.pipelineOne = GestureRecognitionPipeline()
         self.pipelineTwo = GestureRecognitionPipeline()
+        self.pipelineThree = GestureRecognitionPipeline()
+        
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
-        let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
-        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
+        let pipelineOneURL = documentsUrl.appendingPathComponent("trainOne.grt")
+        let classificiationDataOneURL = documentsUrl.appendingPathComponent("trainingOneData.csv")
+
+        let pipelineTwoURL = documentsUrl.appendingPathComponent("trainTwo.grt")
+        let classificiationDataTwoURL = documentsUrl.appendingPathComponent("trainingTwoData.csv")
         
-        let pipelineResult:Bool = pipelineOne!.load(pipelineURL)
-        let classificationDataResult:Bool = pipelineOne!.loadClassificationData(classificiationDataURL)
+        let pipelineThreeURL = documentsUrl.appendingPathComponent("trainThree.grt")
+        let classificiationDataThreeURL = documentsUrl.appendingPathComponent("trainingThreeData.csv")
         
-        let pipelineTwoResult:Bool = pipelineTwo!.load(pipelineURL)
-        let classificationDataTwoResult:Bool = pipelineTwo!.loadClassificationData(classificiationDataURL)
+        let pipelineOneResult:Bool = pipelineOne!.load(pipelineOneURL)
+        let classificationDataOneResult:Bool = pipelineOne!.loadClassificationData(classificiationDataOneURL)
+
+        let pipelineTwoResult:Bool = pipelineTwo!.load(pipelineTwoURL)
+        let classificationDataTwoResult:Bool = pipelineTwo!.loadClassificationData(classificiationDataTwoURL)
+ 
+        let pipelineThreeResult:Bool = pipelineThree!.load(pipelineThreeURL)
+        let classificationDataThreeResult:Bool = pipelineThree!.loadClassificationData(classificiationDataThreeURL)
+
         
-        if (classificationDataResult && pipelineResult) {
+        if (classificationDataOneResult && pipelineOneResult) {
             pipelineOne?.train()
-            
         }
         if (classificationDataTwoResult && pipelineTwoResult) {
-            
             pipelineTwo?.train()
+        }
+        if (classificationDataThreeResult && pipelineThreeResult) {
+            pipelineThree?.train()
         }
         return true
     }
