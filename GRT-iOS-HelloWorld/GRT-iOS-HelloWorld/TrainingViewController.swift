@@ -41,7 +41,7 @@ class TrainingViewController: UIViewController {
         graphView.totalChannelsToDisplay = 3
 
         //Create an instance of a GRT pipeline
-        self.pipeline = appDelegate.pipeline!
+        self.pipeline = appDelegate.pipelineOne!
         //initPipeline()
     }
     

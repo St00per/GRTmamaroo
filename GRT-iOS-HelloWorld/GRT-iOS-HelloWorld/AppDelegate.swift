@@ -12,22 +12,32 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var pipeline: GestureRecognitionPipeline?
+    var pipelineOne: GestureRecognitionPipeline?
+    var pipelineTwo: GestureRecognitionPipeline?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //Create an instance of a gesture recognition pipeline to be used as a global variable, accesible by both our training and prediction view controllers
-        self.pipeline = GestureRecognitionPipeline()
+        self.pipelineOne = GestureRecognitionPipeline()
+        self.pipelineTwo = GestureRecognitionPipeline()
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
         let pipelineURL = documentsUrl.appendingPathComponent("train.grt")
         let classificiationDataURL = documentsUrl.appendingPathComponent("trainingData.csv")
         
-        let pipelineResult:Bool = pipeline!.load(pipelineURL)
-        let classificationDataResult:Bool = pipeline!.loadClassificationData(classificiationDataURL)
+        let pipelineResult:Bool = pipelineOne!.load(pipelineURL)
+        let classificationDataResult:Bool = pipelineOne!.loadClassificationData(classificiationDataURL)
+        
+        let pipelineTwoResult:Bool = pipelineTwo!.load(pipelineURL)
+        let classificationDataTwoResult:Bool = pipelineTwo!.loadClassificationData(classificiationDataURL)
         
         if (classificationDataResult && pipelineResult) {
-            pipeline?.train()
+            pipelineOne?.train()
+            
+        }
+        if (classificationDataTwoResult && pipelineTwoResult) {
+            
+            pipelineTwo?.train()
         }
         return true
     }

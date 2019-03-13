@@ -19,7 +19,9 @@ class DetectingProcessViewController: UIViewController {
     var gestureCounts: [Int] = [0,0,0,0,0]
     var frequencyCount: Int = 0
     let vector = VectorDouble()
-    var pipeline: GestureRecognitionPipeline?
+    var pipelineOne: GestureRecognitionPipeline?
+    var pipelineTwo: GestureRecognitionPipeline?
+    
     fileprivate let accelerometerManager = AccelerometerManager()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -29,8 +31,8 @@ class DetectingProcessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.pipeline = appDelegate.pipeline!
-        
+        self.pipelineOne = appDelegate.pipelineOne!
+        self.pipelineTwo = appDelegate.pipelineTwo!
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,9 +74,11 @@ class DetectingProcessViewController: UIViewController {
             
             //Use the incoming accellerometer data to predict what the performed gesture class is
             if !self.getureIsRecognized {
-                self.pipeline?.predict(self.vector)
+                self.pipelineOne?.predict(self.vector)
+                self.pipelineTwo?.predict(self.vector)
                 DispatchQueue.main.async {
-                        self.updateGestureCounts(gesture: (self.pipeline?.predictedClassLabel)!)
+                    self.updateGestureCounts(gesture: (self.pipelineOne?.predictedClassLabel)!, pipelineNumber: 1)
+                    self.updateGestureCounts(gesture: (self.pipelineTwo?.predictedClassLabel)!, pipelineNumber: 2)
                 }
             }
         }
@@ -195,48 +199,58 @@ class DetectingProcessViewController: UIViewController {
         }
     }
     
-    func updateGestureCounts(gesture: UInt) {
-        activityIndicator.startAnimating()
-        if gesture == 0 {
-            //do nothing
-        } else if (gesture == 1) {
-            gestureCounts[0] += 1
-        } else if (gesture == 2) {
-            gestureCounts[1] += 1
-        } else if (gesture == 3) {
-            gestureCounts[2] += 1
-        } else if (gesture == 4) {
-            gestureCounts[3] += 1
-        } else if (gesture == 5) {
-            gestureCounts[4] += 1
-        }
-        print (gestureCounts)
-        updateCountLabels()
-        
-        if frequencyCount > 350 || predictionTime > 9 {
-            accelerometerManager.stop()
-            getureIsRecognized = true
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
-            guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PatternDetectedViewController") as? PatternDetectedViewController else {
-                return
+    func updateGestureCounts(gesture: UInt, pipelineNumber: Int) {
+        if pipelineNumber == 1 {
+            if gesture > 0 {
+            print ("PIPELINE ONE: \(gesture)")
             }
-            desVC.patternSpeed = 0
-            desVC.detectedPattern = "Error"
-            show(desVC, sender: nil)
         }
-        
-        let sortedArray = gestureCounts.sorted()
-        if ((gestureCounts.max() ?? 0) - sortedArray[3] >= 3 && predictionTime > 3) || (gestureCounts.max() ?? 0) >= 7 {
-            accelerometerManager.stop()
-            getureIsRecognized = true
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
-            guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PatternDetectedViewController") as? PatternDetectedViewController else {
-                return
+        if pipelineNumber == 2 {
+            if gesture > 0 {
+            print ("PIPELINE TWO: \(gesture)")
             }
-            desVC.detectedPattern = patternCheck()
-            desVC.patternSpeed = speedCheck(pattern: patternCheck())
-            show(desVC, sender: nil)
         }
+//        activityIndicator.startAnimating()
+//        if gesture == 0 {
+//            //do nothing
+//        } else if (gesture == 1) {
+//            gestureCounts[0] += 1
+//        } else if (gesture == 2) {
+//            gestureCounts[1] += 1
+//        } else if (gesture == 3) {
+//            gestureCounts[2] += 1
+//        } else if (gesture == 4) {
+//            gestureCounts[3] += 1
+//        } else if (gesture == 5) {
+//            gestureCounts[4] += 1
+//        }
+//        print (gestureCounts)
+//        updateCountLabels()
+//
+//        if frequencyCount > 350 || predictionTime > 9 {
+//            accelerometerManager.stop()
+//            getureIsRecognized = true
+//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
+//            guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PatternDetectedViewController") as? PatternDetectedViewController else {
+//                return
+//            }
+//            desVC.patternSpeed = 0
+//            desVC.detectedPattern = "Error"
+//            show(desVC, sender: nil)
+//        }
+//
+//        let sortedArray = gestureCounts.sorted()
+//        if ((gestureCounts.max() ?? 0) - sortedArray[3] >= 3 && predictionTime > 3) || (gestureCounts.max() ?? 0) >= 7 {
+//            accelerometerManager.stop()
+//            getureIsRecognized = true
+//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
+//            guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PatternDetectedViewController") as? PatternDetectedViewController else {
+//                return
+//            }
+//            desVC.detectedPattern = patternCheck()
+//            desVC.patternSpeed = speedCheck(pattern: patternCheck())
+//            show(desVC, sender: nil)
+//        }
     }
     
     
