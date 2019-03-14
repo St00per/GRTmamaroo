@@ -41,7 +41,7 @@ class TrainingViewController: UIViewController {
         graphView.totalChannelsToDisplay = 3
 
         //Create an instance of a GRT pipeline
-        self.pipeline = appDelegate.pipelineThree!
+        self.pipeline = appDelegate.pipelineFive!
         //initPipeline()
     }
     
@@ -115,7 +115,7 @@ class TrainingViewController: UIViewController {
         
         //Save current pipeline and training data as a CSV file to temp before deleting previous
         
-        let pipelineTempURL = tempDirectory.appendingPathComponent("trainThree.grt")
+        let pipelineTempURL = tempDirectory.appendingPathComponent("trainFive.grt")
 
         let pipelineSaveResult = self.pipeline?.save(pipelineTempURL)
         if !pipelineSaveResult! {
@@ -126,7 +126,7 @@ class TrainingViewController: UIViewController {
         }
         
         // Save the training data as a CSV file to temp directory
-        let classificiationDataTempURL = tempDirectory.appendingPathComponent("trainingThreeData.csv")
+        let classificiationDataTempURL = tempDirectory.appendingPathComponent("trainingFiveData.csv")
 
         let classificationSaveResult = self.pipeline?.saveClassificationData(classificiationDataTempURL)
         
@@ -136,8 +136,8 @@ class TrainingViewController: UIViewController {
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             userAlert.addAction(cancel)
         }
-        let pipelineURL = documentsUrl.appendingPathComponent("trainThree.grt")
-        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingThreeData.csv")
+        let pipelineURL = documentsUrl.appendingPathComponent("trainFive.grt")
+        let classificiationDataURL = documentsUrl.appendingPathComponent("trainingFiveData.csv")
         
         
         if pipelineSaveResult ?? false, classificationSaveResult ?? false {

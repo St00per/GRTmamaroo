@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pipelineOne: GestureRecognitionPipeline?
     var pipelineTwo: GestureRecognitionPipeline?
     var pipelineThree: GestureRecognitionPipeline?
+    var pipelineFour: GestureRecognitionPipeline?
+    var pipelineFive: GestureRecognitionPipeline?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
@@ -22,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.pipelineOne = GestureRecognitionPipeline()
         self.pipelineTwo = GestureRecognitionPipeline()
         self.pipelineThree = GestureRecognitionPipeline()
+        self.pipelineFour = GestureRecognitionPipeline()
+        self.pipelineFive = GestureRecognitionPipeline()
         
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
@@ -34,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pipelineThreeURL = documentsUrl.appendingPathComponent("trainThree.grt")
         let classificiationDataThreeURL = documentsUrl.appendingPathComponent("trainingThreeData.csv")
         
+        let pipelineFourURL = documentsUrl.appendingPathComponent("trainFour.grt")
+        let classificiationDataFourURL = documentsUrl.appendingPathComponent("trainingFourData.csv")
+
+        let pipelineFiveURL = documentsUrl.appendingPathComponent("trainFive.grt")
+        let classificiationDataFiveURL = documentsUrl.appendingPathComponent("trainingFiveData.csv")
+        
         let pipelineOneResult:Bool = pipelineOne!.load(pipelineOneURL)
         let classificationDataOneResult:Bool = pipelineOne!.loadClassificationData(classificiationDataOneURL)
 
@@ -43,7 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pipelineThreeResult:Bool = pipelineThree!.load(pipelineThreeURL)
         let classificationDataThreeResult:Bool = pipelineThree!.loadClassificationData(classificiationDataThreeURL)
 
+        let pipelineFourResult:Bool = pipelineFour!.load(pipelineFourURL)
+        let classificationDataFourResult:Bool = pipelineFour!.loadClassificationData(classificiationDataFourURL)
         
+        let pipelineFiveResult:Bool = pipelineFive!.load(pipelineFiveURL)
+        let classificationDataFiveResult:Bool = pipelineFive!.loadClassificationData(classificiationDataFiveURL)
+        
+
         if (classificationDataOneResult && pipelineOneResult) {
             pipelineOne?.train()
         }
@@ -52,6 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         if (classificationDataThreeResult && pipelineThreeResult) {
             pipelineThree?.train()
+        }
+        if (classificationDataFourResult && pipelineFourResult) {
+            pipelineFour?.train()
+        }
+        if (classificationDataFiveResult && pipelineFiveResult) {
+            pipelineFive?.train()
         }
         return true
     }

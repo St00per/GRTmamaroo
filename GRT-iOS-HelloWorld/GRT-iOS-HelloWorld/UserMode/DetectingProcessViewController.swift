@@ -22,6 +22,8 @@ class DetectingProcessViewController: UIViewController {
     var pipelineOne: GestureRecognitionPipeline?
     var pipelineTwo: GestureRecognitionPipeline?
     var pipelineThree: GestureRecognitionPipeline?
+    var pipelineFour: GestureRecognitionPipeline?
+    var pipelineFive: GestureRecognitionPipeline?
     
     fileprivate let accelerometerManager = AccelerometerManager()
     
@@ -35,6 +37,8 @@ class DetectingProcessViewController: UIViewController {
         self.pipelineOne = appDelegate.pipelineOne!
         self.pipelineTwo = appDelegate.pipelineTwo!
         self.pipelineThree = appDelegate.pipelineThree!
+        self.pipelineFour = appDelegate.pipelineFour!
+        self.pipelineFive = appDelegate.pipelineFive!
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,10 +83,14 @@ class DetectingProcessViewController: UIViewController {
                 self.pipelineOne?.predict(self.vector)
                 self.pipelineTwo?.predict(self.vector)
                 self.pipelineThree?.predict(self.vector)
+                self.pipelineFour?.predict(self.vector)
+                self.pipelineFive?.predict(self.vector)
                 DispatchQueue.main.async {
                     self.updateGestureCounts(gesture: (self.pipelineOne?.predictedClassLabel)!, pipelineNumber: 1)
                     self.updateGestureCounts(gesture: (self.pipelineTwo?.predictedClassLabel)!, pipelineNumber: 2)
                     self.updateGestureCounts(gesture: (self.pipelineThree?.predictedClassLabel)!, pipelineNumber: 3)
+                    self.updateGestureCounts(gesture: (self.pipelineFour?.predictedClassLabel)!, pipelineNumber: 4)
+                    self.updateGestureCounts(gesture: (self.pipelineFive?.predictedClassLabel)!, pipelineNumber: 5)
                 }
             }
         }
@@ -216,6 +224,16 @@ class DetectingProcessViewController: UIViewController {
         if pipelineNumber == 3 {
             if gesture > 0 {
                 gestureCounts[2] += 1
+            }
+        }
+        if pipelineNumber == 4 {
+            if gesture > 0 {
+                gestureCounts[3] += 1
+            }
+        }
+        if pipelineNumber == 5 {
+            if gesture > 0 {
+                gestureCounts[4] += 1
             }
         }
 //        activityIndicator.startAnimating()
