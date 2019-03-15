@@ -16,7 +16,7 @@ class DetectingProcessViewController: UIViewController {
     var labelUpdateTime = Date.timeIntervalSinceReferenceDate
     var predictionTime: Double = 0
     var getureIsRecognized = false
-    var gestureCounts: [Int] = [0,0,0,0,0]
+    var gestureCounts: [Float] = [0,0,0,0,0]
     var frequencyCount: Int = 0
     let vector = VectorDouble()
     var pipelineOne: GestureRecognitionPipeline?
@@ -213,7 +213,7 @@ class DetectingProcessViewController: UIViewController {
     func updateGestureCounts(gesture: UInt, pipelineNumber: Int) {
         if pipelineNumber == 1 {
             if gesture > 0 {
-            gestureCounts[0] += 1
+            gestureCounts[0] += 1.3
             }
         }
         if pipelineNumber == 2 {
@@ -223,12 +223,12 @@ class DetectingProcessViewController: UIViewController {
         }
         if pipelineNumber == 3 {
             if gesture > 0 {
-                gestureCounts[2] += 1
+                gestureCounts[2] += 1.2
             }
         }
         if pipelineNumber == 4 {
             if gesture > 0 {
-                gestureCounts[3] += 1
+                gestureCounts[3] += 1.1
             }
         }
         if pipelineNumber == 5 {
