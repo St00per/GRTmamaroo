@@ -19,11 +19,15 @@ class DetectingProcessViewController: UIViewController {
     var gestureCounts: [Float] = [0,0,0,0,0]
     var frequencyCount: Int = 0
     let vector = VectorDouble()
+    //let matrix =
     var pipelineOne: GestureRecognitionPipeline?
     var pipelineTwo: GestureRecognitionPipeline?
     var pipelineThree: GestureRecognitionPipeline?
     var pipelineFour: GestureRecognitionPipeline?
     var pipelineFive: GestureRecognitionPipeline?
+    
+    var pipelineVerticalOne: GestureRecognitionPipeline?
+    var pipelineVerticalTwo: GestureRecognitionPipeline?
     
     fileprivate let accelerometerManager = AccelerometerManager()
     
@@ -34,11 +38,14 @@ class DetectingProcessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.pipelineOne = appDelegate.pipelineOne!
-        self.pipelineTwo = appDelegate.pipelineTwo!
-        self.pipelineThree = appDelegate.pipelineThree!
-        self.pipelineFour = appDelegate.pipelineFour!
-        self.pipelineFive = appDelegate.pipelineFive!
+//        self.pipelineOne = appDelegate.pipelineOne!
+//        self.pipelineTwo = appDelegate.pipelineTwo!
+//        self.pipelineThree = appDelegate.pipelineThree!
+//        self.pipelineFour = appDelegate.pipelineFour!
+//        self.pipelineFive = appDelegate.pipelineFive!
+        
+        self.pipelineVerticalOne = appDelegate.pipelineVerticalOne!
+        self.pipelineVerticalTwo = appDelegate.pipelineVerticalTwo!
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,17 +87,26 @@ class DetectingProcessViewController: UIViewController {
             
             //Use the incoming accellerometer data to predict what the performed gesture class is
             if !self.getureIsRecognized {
-                self.pipelineOne?.predict(self.vector)
-                self.pipelineTwo?.predict(self.vector)
-                self.pipelineThree?.predict(self.vector)
-                self.pipelineFour?.predict(self.vector)
-                self.pipelineFive?.predict(self.vector)
+//                self.pipelineOne?.predict(self.vector)
+//                self.pipelineTwo?.predict(self.vector)
+//                self.pipelineThree?.predict(self.vector)
+//                self.pipelineFour?.predict(self.vector)
+//                self.pipelineFive?.predict(self.vector)
+                
+                self.pipelineVerticalOne?.predict(self.vector)
+                self.pipelineVerticalTwo?.predict(self.vector)
+                
+                
                 DispatchQueue.main.async {
-                    self.updateGestureCounts(gesture: (self.pipelineOne?.predictedClassLabel)!, pipelineNumber: 1)
-                    self.updateGestureCounts(gesture: (self.pipelineTwo?.predictedClassLabel)!, pipelineNumber: 2)
-                    self.updateGestureCounts(gesture: (self.pipelineThree?.predictedClassLabel)!, pipelineNumber: 3)
-                    self.updateGestureCounts(gesture: (self.pipelineFour?.predictedClassLabel)!, pipelineNumber: 4)
-                    self.updateGestureCounts(gesture: (self.pipelineFive?.predictedClassLabel)!, pipelineNumber: 5)
+//                    self.updateGestureCounts(gesture: (self.pipelineOne?.predictedClassLabel)!, pipelineNumber: 1)
+//                    self.updateGestureCounts(gesture: (self.pipelineTwo?.predictedClassLabel)!, pipelineNumber: 2)
+//                    self.updateGestureCounts(gesture: (self.pipelineThree?.predictedClassLabel)!, pipelineNumber: 3)
+//                    self.updateGestureCounts(gesture: (self.pipelineFour?.predictedClassLabel)!, pipelineNumber: 4)
+//                    self.updateGestureCounts(gesture: (self.pipelineFive?.predictedClassLabel)!, pipelineNumber: 5)
+                    
+                    self.updateGestureCounts(gesture: (self.pipelineVerticalOne?.predictedClassLabel)!, pipelineNumber: 1)
+                    self.updateGestureCounts(gesture: (self.pipelineVerticalTwo?.predictedClassLabel)!, pipelineNumber: 2)
+                    
                 }
             }
         }
@@ -213,7 +229,7 @@ class DetectingProcessViewController: UIViewController {
     func updateGestureCounts(gesture: UInt, pipelineNumber: Int) {
         if pipelineNumber == 1 {
             if gesture > 0 {
-            gestureCounts[0] += 1.3
+            gestureCounts[0] += 1
             }
         }
         if pipelineNumber == 2 {
@@ -223,12 +239,12 @@ class DetectingProcessViewController: UIViewController {
         }
         if pipelineNumber == 3 {
             if gesture > 0 {
-                gestureCounts[2] += 1.2
+                gestureCounts[2] += 1
             }
         }
         if pipelineNumber == 4 {
             if gesture > 0 {
-                gestureCounts[3] += 1.1
+                gestureCounts[3] += 1
             }
         }
         if pipelineNumber == 5 {
@@ -253,7 +269,7 @@ class DetectingProcessViewController: UIViewController {
         print (gestureCounts)
         updateCountLabels()
 
-        if frequencyCount > 350 || predictionTime > 9 {
+        if frequencyCount > 375 || predictionTime > 10 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)
@@ -266,7 +282,7 @@ class DetectingProcessViewController: UIViewController {
         }
 
         let sortedArray = gestureCounts.sorted()
-        if ((gestureCounts.max() ?? 0) - sortedArray[3] >= 3 && predictionTime > 3) || (gestureCounts.max() ?? 0) >= 15 {
+        if ((gestureCounts.max() ?? 0) - sortedArray[3] >= 2 && predictionTime > 3) || (gestureCounts.max() ?? 0) >= 13 {
             accelerometerManager.stop()
             getureIsRecognized = true
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "PatternDetected", bundle: nil)

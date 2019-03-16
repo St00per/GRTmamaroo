@@ -89,7 +89,7 @@ private:
     self.instance->setClassifier(classifier);
     classifier.enableNullRejection(true);
     self.instance->addPostProcessingModule(GRT::ClassLabelTimeoutFilter(500, GRT::ClassLabelTimeoutFilter::ALL_CLASS_LABELS));
-    self.classificationData->setNumDimensions(6);
+    self.classificationData->setNumDimensions(1800);
 }
 
 //// save and load pipeline

@@ -15,6 +15,7 @@
 		0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */; };
 		0E6720D5222E96E200957425 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720D3222E96E200957425 /* Inter-Bold.otf */; };
 		0E6720D6222E96E200957425 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720D4222E96E200957425 /* Inter-Regular.otf */; };
+		0E71BD6D223CF2C3004C8B50 /* MatrixFloat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */; };
 		E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4775E791F5EF5D500D306FD /* TrainingViewController.swift */; };
 		E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */; };
 		E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB6D361F5EF38A00917F2B /* AcceleremoterManager.swift */; };
@@ -91,6 +92,8 @@
 		0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternDetectedViewController.swift; sourceTree = "<group>"; };
 		0E6720D3222E96E200957425 /* Inter-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.otf"; sourceTree = "<group>"; };
 		0E6720D4222E96E200957425 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
+		0E71BD6A223CF2A1004C8B50 /* MatrixFloat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatrixFloat.h; sourceTree = "<group>"; };
+		0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixFloat.mm; sourceTree = "<group>"; };
 		E41951FF1F4B6D3E0016E511 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E4775E791F5EF5D500D306FD /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				E4F789541F45E7D900683570 /* iOS-GRT-HelloWorldTests */,
 				E4F789551F45E7D900683570 /* iOS-GRT-HelloWorldUITests */,
 				E4F789561F45E7D900683570 /* VectorDouble.h */,
+				0E71BD6A223CF2A1004C8B50 /* MatrixFloat.h */,
+				0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */,
 				E4F789571F45E7D900683570 /* VectorDouble.mm */,
 			);
 			name = GRTiOSFramework;
@@ -480,6 +485,7 @@
 				0E525816222941A6005442E2 /* DetectingProcessViewController.swift in Sources */,
 				0E52581422294142005442E2 /* UserModeMainViewController.swift in Sources */,
 				0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */,
+				0E71BD6D223CF2C3004C8B50 /* MatrixFloat.mm in Sources */,
 				E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */,
 				E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */,
 				E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */,
