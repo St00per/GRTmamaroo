@@ -42,7 +42,7 @@ class PredictionViewController: UIViewController {
     
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.pipeline = appDelegate.pipelineFive!
+        
 
         //initPipeline()
         graphView.totalChannelsToDisplay = 3

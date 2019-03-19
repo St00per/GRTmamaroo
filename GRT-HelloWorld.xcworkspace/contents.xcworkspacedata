@@ -5,7 +5,7 @@
       location = "container:GRT-iOS-HelloWorld/GRT-iOS-HelloWorld.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/nicholasarner/Development/MyRepos/GRT-iOS-HelloWorld/GRTiOSFramework/GRTiOS.xcodeproj">
+      location = "group:GRTiOSFramework/GRTiOS.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SwiftR/SwiftR.xcodeproj">

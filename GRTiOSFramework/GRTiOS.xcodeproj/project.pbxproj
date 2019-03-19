@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70008EBC223F4F49007E8BF5 /* MatrixFloat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70008EB8223F4F46007E8BF5 /* MatrixFloat.mm */; };
+		70008EBF223F4F49007E8BF5 /* MatrixFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = 70008EBB223F4F49007E8BF5 /* MatrixFloat.h */; };
 		E4065B2F1F44930300990FA4 /* GRTiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4065B251F44930300990FA4 /* GRTiOS.framework */; };
 		E4065B341F44930300990FA4 /* GRTiOSFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4065B331F44930300990FA4 /* GRTiOSFrameworkTests.swift */; };
 		E4065B361F44930300990FA4 /* GRTiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = E4065B281F44930300990FA4 /* GRTiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -296,6 +298,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		70008EB8223F4F46007E8BF5 /* MatrixFloat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixFloat.mm; sourceTree = "<group>"; };
+		70008EBB223F4F49007E8BF5 /* MatrixFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixFloat.h; sourceTree = "<group>"; };
 		E4065B251F44930300990FA4 /* GRTiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GRTiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4065B281F44930300990FA4 /* GRTiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRTiOS.h; sourceTree = "<group>"; };
 		E4065B291F44930300990FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1399,6 +1403,8 @@
 				E41951FC1F4B6B7C0016E511 /* VectorDouble.mm */,
 				E44B69861F4D056B00C42FD6 /* VectorFloat.h */,
 				E44B69841F4D052A00C42FD6 /* VectorFloat.mm */,
+				70008EBB223F4F49007E8BF5 /* MatrixFloat.h */,
+				70008EB8223F4F46007E8BF5 /* MatrixFloat.mm */,
 			);
 			name = "Objective-C Wrapper";
 			sourceTree = "<group>";
@@ -1519,6 +1525,7 @@
 				E4065D5A1F44931800990FA4 /* DataType.h in Headers */,
 				E4065D3E1F44931800990FA4 /* MedianFilter.h in Headers */,
 				E4065D481F44931800990FA4 /* MLP.h in Headers */,
+				70008EBF223F4F49007E8BF5 /* MatrixFloat.h in Headers */,
 				E4065D111F44931800990FA4 /* FastFourierTransform.h in Headers */,
 				E4065D601F44931800990FA4 /* EigenvalueDecomposition.h in Headers */,
 				E4065CFD1F44931800990FA4 /* Matrix.h in Headers */,
@@ -1713,6 +1720,7 @@
 				E4065D161F44931800990FA4 /* KMeansFeatures.cpp in Sources */,
 				E4065D8C1F44931800990FA4 /* Util.cpp in Sources */,
 				E4065CED1F44931800990FA4 /* GRTBase.cpp in Sources */,
+				70008EBC223F4F49007E8BF5 /* MatrixFloat.mm in Sources */,
 				E4065D891F44931800990FA4 /* TrainingLog.cpp in Sources */,
 				E4065C861F44931800990FA4 /* AdaBoost.cpp in Sources */,
 				E4065D981F4498B200990FA4 /* GestureRecognitionPipeline.mm in Sources */,

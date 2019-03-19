@@ -17,6 +17,9 @@
 
 #ifdef __cplusplus
 - (GRT::VectorFloat *)cppInstance;
+- (void) setCppInstance:(GRT::VectorFloat *) instance;
 #endif
+
+- (float) at: (int) i;
 
 @end

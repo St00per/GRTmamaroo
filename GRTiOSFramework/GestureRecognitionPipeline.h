@@ -10,19 +10,22 @@
 #import <Foundation/Foundation.h>
 #import "VectorDouble.h"
 #import "VectorFloat.h"
+#import "MatrixFloat.h"
 
 @interface GestureRecognitionPipeline : NSObject
 
 @property (readonly, getter = predictedClassLabel) NSUInteger predictedClassLabel;
 @property (readonly, getter = maximumLikelihood) double maximumLikelihood;
+@property (readonly, getter = classLikelihoods) VectorFloat* classLikelihoods;
+
 
 - (BOOL)savePipeline:(NSURL *)url;
 - (BOOL)loadPipeline:(NSURL *)url;
 - (BOOL)saveClassificationData:(NSURL *)url;
 - (BOOL)loadClassificationData:(NSURL *)url;
 - (BOOL)setClassifier:(NSString *)classifier;
-- (BOOL)predict:(VectorDouble *)inputVector;
-- (void)addSamplesToClassificationDataForGesture:(NSUInteger)gesture :(VectorFloat*)vectorData;
+- (BOOL)predict:(MatrixFloat *)inputVector;
+- (void)addSamplesToClassificationDataForGesture:(NSUInteger)gesture :(MatrixFloat*)vectorData;
 - (BOOL)trainPipeline;
 
 @end

@@ -55,9 +55,9 @@ private:
 
 @interface GestureRecognitionPipeline()
 @property GRT::GestureRecognitionPipeline *instance;
-@property GRT::ClassificationData *classificationData;
-@property GRT::ClassificationData *trainingData;
-@property GRT::VectorFloat *sampleData;
+@property GRT::LabelledTimeSeriesClassificationData *classificationData;
+@property GRT::LabelledTimeSeriesClassificationData *trainingData;
+@property GRT::MatrixFloat *sampleData;
 
 @property NSLogStream *nsLogStream;
 @end
@@ -69,8 +69,8 @@ private:
     self = [super init];
     if (self) {
         self.instance = new GRT::GestureRecognitionPipeline;
-        self.classificationData = new GRT::ClassificationData;
-        self.trainingData = new GRT::ClassificationData;
+        self.classificationData = new GRT::LabelledTimeSeriesClassificationData;
+        self.trainingData = new GRT::LabelledTimeSeriesClassificationData;
         [self setClassifier];
         // Redirect cout to NSLog
         self.nsLogStream = new NSLogStream(std::cout);
@@ -85,11 +85,11 @@ private:
 
 //// pipeline configuration
 - (void)setClassifier {
-    GRT::RandomForests classifier;
+    GRT::DTW classifier;
     self.instance->setClassifier(classifier);
     classifier.enableNullRejection(true);
     self.instance->addPostProcessingModule(GRT::ClassLabelTimeoutFilter(500, GRT::ClassLabelTimeoutFilter::ALL_CLASS_LABELS));
-    self.classificationData->setNumDimensions(1800);
+    self.classificationData->setNumDimensions(6);
 }
 
 //// save and load pipeline
@@ -125,7 +125,7 @@ private:
     return result;
 }
 
-- (void)addSamplesToClassificationDataForGesture:(NSUInteger)gesture :(VectorFloat*)vectorData {
+- (void)addSamplesToClassificationDataForGesture:(NSUInteger)gesture :(MatrixFloat*)vectorData {
     
     self.classificationData->addSample(gesture, *[vectorData cppInstance]);
 }
@@ -162,6 +162,12 @@ private:
 
 - (BOOL)predict:(VectorDouble *) inputVector {
     return self.instance->predict(*[inputVector cppInstance]);
+}
+
+-(VectorFloat *) classLikelihoods {
+    VectorFloat *likelihoods = [VectorFloat new];
+    likelihoods.cppInstance = new GRT::VectorFloat(self.instance->getClassLikelihoods());
+    return likelihoods;
 }
 
 @end

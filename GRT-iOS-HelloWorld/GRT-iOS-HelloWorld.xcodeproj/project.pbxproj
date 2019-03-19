@@ -15,7 +15,8 @@
 		0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */; };
 		0E6720D5222E96E200957425 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720D3222E96E200957425 /* Inter-Bold.otf */; };
 		0E6720D6222E96E200957425 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720D4222E96E200957425 /* Inter-Regular.otf */; };
-		0E71BD6D223CF2C3004C8B50 /* MatrixFloat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */; };
+		0EDFB196223F5B2300AACE43 /* MatrixFloat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFB194223F5B2200AACE43 /* MatrixFloat.mm */; };
+		0EDFB197223F5B2300AACE43 /* GestureRecognitionPipeline.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0EDFB195223F5B2200AACE43 /* GestureRecognitionPipeline.mm */; };
 		E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4775E791F5EF5D500D306FD /* TrainingViewController.swift */; };
 		E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */; };
 		E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB6D361F5EF38A00917F2B /* AcceleremoterManager.swift */; };
@@ -92,8 +93,10 @@
 		0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternDetectedViewController.swift; sourceTree = "<group>"; };
 		0E6720D3222E96E200957425 /* Inter-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.otf"; sourceTree = "<group>"; };
 		0E6720D4222E96E200957425 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
-		0E71BD6A223CF2A1004C8B50 /* MatrixFloat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatrixFloat.h; sourceTree = "<group>"; };
-		0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixFloat.mm; sourceTree = "<group>"; };
+		0EDFB192223F5B2000AACE43 /* MatrixFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixFloat.h; sourceTree = "<group>"; };
+		0EDFB193223F5B2100AACE43 /* GestureRecognitionPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognitionPipeline.h; sourceTree = "<group>"; };
+		0EDFB194223F5B2200AACE43 /* MatrixFloat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixFloat.mm; sourceTree = "<group>"; };
+		0EDFB195223F5B2200AACE43 /* GestureRecognitionPipeline.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GestureRecognitionPipeline.mm; sourceTree = "<group>"; };
 		E41951FF1F4B6D3E0016E511 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E4775E791F5EF5D500D306FD /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
@@ -115,8 +118,6 @@
 		E4F789301F45DEAC00683570 /* GRTiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GRTiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GRT-HelloWorld-gjbanovjypsdbdgdyuofejqirqpd/Build/Products/Debug-iphonesimulator/GRTiOS.framework"; sourceTree = "<group>"; };
 		E4F789371F45E2BE00683570 /* GRT-iOS-HelloWorld-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GRT-iOS-HelloWorld-Bridging-Header.h"; sourceTree = "<group>"; };
 		E4F789461F45E7D800683570 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
-		E4F789471F45E7D800683570 /* GestureRecognitionPipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureRecognitionPipeline.h; sourceTree = "<group>"; };
-		E4F789481F45E7D800683570 /* GestureRecognitionPipeline.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GestureRecognitionPipeline.mm; sourceTree = "<group>"; };
 		E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = GRTiOS.xcodeproj; sourceTree = "<group>"; };
 		E4F7894D1F45E7D900683570 /* GRTiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRTiOS.h; sourceTree = "<group>"; };
 		E4F7894E1F45E7D900683570 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -250,9 +251,11 @@
 		E4F789451F45E7D800683570 /* GRTiOSFramework */ = {
 			isa = PBXGroup;
 			children = (
+				0EDFB193223F5B2100AACE43 /* GestureRecognitionPipeline.h */,
+				0EDFB195223F5B2200AACE43 /* GestureRecognitionPipeline.mm */,
+				0EDFB192223F5B2000AACE43 /* MatrixFloat.h */,
+				0EDFB194223F5B2200AACE43 /* MatrixFloat.mm */,
 				E4F789461F45E7D800683570 /* BridgingHeader.h */,
-				E4F789471F45E7D800683570 /* GestureRecognitionPipeline.h */,
-				E4F789481F45E7D800683570 /* GestureRecognitionPipeline.mm */,
 				E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */,
 				E4F7894C1F45E7D900683570 /* GRTiOSFramework */,
 				E4F7894F1F45E7D900683570 /* GRTiOSFrameworkTests */,
@@ -260,8 +263,6 @@
 				E4F789541F45E7D900683570 /* iOS-GRT-HelloWorldTests */,
 				E4F789551F45E7D900683570 /* iOS-GRT-HelloWorldUITests */,
 				E4F789561F45E7D900683570 /* VectorDouble.h */,
-				0E71BD6A223CF2A1004C8B50 /* MatrixFloat.h */,
-				0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */,
 				E4F789571F45E7D900683570 /* VectorDouble.mm */,
 			);
 			name = GRTiOSFramework;
@@ -482,10 +483,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDFB197223F5B2300AACE43 /* GestureRecognitionPipeline.mm in Sources */,
 				0E525816222941A6005442E2 /* DetectingProcessViewController.swift in Sources */,
+				0EDFB196223F5B2300AACE43 /* MatrixFloat.mm in Sources */,
 				0E52581422294142005442E2 /* UserModeMainViewController.swift in Sources */,
 				0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */,
-				0E71BD6D223CF2C3004C8B50 /* MatrixFloat.mm in Sources */,
 				E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */,
 				E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */,
 				E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */,
