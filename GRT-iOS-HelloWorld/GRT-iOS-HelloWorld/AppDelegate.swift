@@ -13,30 +13,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var pipeline: GestureRecognitionPipeline?
+    var fastPipeline: GestureRecognitionPipeline?
     var verticalPipeline: GestureRecognitionPipeline?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         //Create an instance of a gesture recognition pipeline to be used as a global variable, accesible by both our training and prediction view controllers
 
         self.pipeline = GestureRecognitionPipeline()
+        self.fastPipeline = GestureRecognitionPipeline()
         self.verticalPipeline = GestureRecognitionPipeline()
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
         let pipelineURL = documentsUrl.appendingPathComponent("trainPipeline.grt")
         let classificiationDataPipelineURL = documentsUrl.appendingPathComponent("trainingPipelineData.csv")
 
-        let pipelineResult:Bool = pipeline!.load(pipelineURL)
-        let classificationDataPipelineResult:Bool = pipeline!.loadClassificationData(classificiationDataPipelineURL)
+        let pipelineResult: Bool = pipeline!.load(pipelineURL)
+        let classificationDataPipelineResult: Bool = pipeline!.loadClassificationData(classificiationDataPipelineURL)
 
         if (classificationDataPipelineResult && pipelineResult) {
             pipeline?.train()
         }
         
+        let fastPipelineURL = documentsUrl.appendingPathComponent("trainFastPipeline.grt")
+        let classificiationDataFastPipelineURL = documentsUrl.appendingPathComponent("trainingFastPipelineData.csv")
+        
+        let fastPipelineResult: Bool = fastPipeline!.load(fastPipelineURL)
+        let classificationDataFastPipelineResult: Bool = fastPipeline!.loadClassificationData(classificiationDataFastPipelineURL)
+        
+        if (classificationDataFastPipelineResult && fastPipelineResult) {
+            fastPipeline?.train()
+        }
+
         let verticalPipelineURL = documentsUrl.appendingPathComponent("trainVerticalPipeline.grt")
         let classificiationDataVerticalPipelineURL = documentsUrl.appendingPathComponent("trainingVerticalPipelineData.csv")
         
-        let verticalPipelineResult:Bool = verticalPipeline!.load(verticalPipelineURL)
-        let classificationDataVerticalPipelineResult:Bool = verticalPipeline!.loadClassificationData(classificiationDataVerticalPipelineURL)
+        let verticalPipelineResult: Bool = verticalPipeline!.load(verticalPipelineURL)
+        let classificationDataVerticalPipelineResult: Bool = verticalPipeline!.loadClassificationData(classificiationDataVerticalPipelineURL)
         
         if (classificationDataVerticalPipelineResult && verticalPipelineResult) {
             verticalPipeline?.train()

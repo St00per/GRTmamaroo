@@ -29,8 +29,8 @@ class TrainingViewController: UIViewController {
     var trainButtonSelected:Bool = false
     
     //var pipeline: GestureRecognitionPipeline?
-    var verticalPipeline: GestureRecognitionPipeline?
-    
+    //var verticalPipeline: GestureRecognitionPipeline?
+    var fastPipeline: GestureRecognitionPipeline?
     
     var trainStart: Bool = false
     var gestureClass: Int = 0
@@ -51,7 +51,8 @@ class TrainingViewController: UIViewController {
         
         //Create an instance of a GRT pipeline
         //self.pipeline = appDelegate.pipeline!
-        self.verticalPipeline = appDelegate.verticalPipeline!
+        //self.verticalPipeline = appDelegate.verticalPipeline!
+        self.fastPipeline = appDelegate.fastPipeline!
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,21 +78,21 @@ class TrainingViewController: UIViewController {
                 vector.pushBack(deviceMotion.rotationRate.x)
                 vector.pushBack(deviceMotion.rotationRate.y)
                 vector.pushBack(deviceMotion.rotationRate.z)
-//                vector.pushBack(deviceMotion.attitude.pitch)
-//                vector.pushBack(deviceMotion.attitude.roll)
-//                vector.pushBack(deviceMotion.attitude.yaw)
-                
-                
                 
                 if self.trainButton.isSelected {
                     if deviceMotion.attitude.pitch > 0.9 {
-                        self.verticalPipeline!.addSamplesToClassificationData(forGesture: UInt(gestureClass), vector)
-                        self.iterationCount += 1
-                        print (self.iterationCount)
+                        //                        self.verticalPipeline!.addSamplesToClassificationData(forGesture: UInt(gestureClass), vector)
+                        //                        self.iterationCount += 1
+                        //                        print (self.iterationCount)
                     } else {
-//                    self.pipeline!.addSamplesToClassificationData(forGesture: UInt(gestureClass), vector)
-//                    self.iterationCount += 1
-//                    print (self.iterationCount)
+                        //                    self.pipeline!.addSamplesToClassificationData(forGesture: UInt(gestureClass), vector)
+                        //                    self.iterationCount += 1
+                        //                    print (self.iterationCount)
+                        if abs(deviceMotion.userAcceleration.z) > 0.4 {
+                            self.fastPipeline!.addSamplesToClassificationData(forGesture: UInt(gestureClass), vector)
+                            self.iterationCount += 1
+                            print (self.iterationCount)
+                        }
                     }
                 }
             }
@@ -114,7 +115,7 @@ class TrainingViewController: UIViewController {
         // Set URL for saving the pipeline to
         let documentsUrlString = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let documentsPipelineUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
+        
         let tempPipelineDirectory = URL(fileURLWithPath: documentsUrlString + "/Temp")
         
         
@@ -134,76 +135,112 @@ class TrainingViewController: UIViewController {
         }
         
         //Save current pipeline and training data as a CSV file to temp before deleting previous
-        let pipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainPipeline.grt")
-        //let pipelineTempSaveResult = self.pipeline?.save(pipelineTempURL)
+        //        let pipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainPipeline.grt")
+        //        let pipelineTempSaveResult = self.pipeline?.save(pipelineTempURL)
         
-        let verticalPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainVerticalPipeline.grt")
-        let verticalPipelineTempSaveResult = self.verticalPipeline?.save(verticalPipelineTempURL)
+        let fastPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainFastPipeline.grt")
+        let fastPipelineTempSaveResult = self.fastPipeline?.save(fastPipelineTempURL)
         
-//        if !pipelineTempSaveResult! {
-//            let userAlert = UIAlertController(title: "Error", message: "Failed to save pipeline", preferredStyle: .alert)
-//            self.present(userAlert, animated: true, completion: { _ in })
-//            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-//            userAlert.addAction(cancel)
-//        }
+        //        let verticalPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainVerticalPipeline.grt")
+        //        let verticalPipelineTempSaveResult = self.verticalPipeline?.save(verticalPipelineTempURL)
         
-        if !verticalPipelineTempSaveResult! {
+        //        if !pipelineTempSaveResult! {
+        //            let userAlert = UIAlertController(title: "Error", message: "Failed to save pipeline", preferredStyle: .alert)
+        //            self.present(userAlert, animated: true, completion: { _ in })
+        //            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        //            userAlert.addAction(cancel)
+        //        }
+        
+        if !fastPipelineTempSaveResult! {
             let userAlert = UIAlertController(title: "Error", message: "Failed to save pipeline", preferredStyle: .alert)
             self.present(userAlert, animated: true, completion: { _ in })
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             userAlert.addAction(cancel)
         }
         
+        //        if !verticalPipelineTempSaveResult! {
+        //            let userAlert = UIAlertController(title: "Error", message: "Failed to save pipeline", preferredStyle: .alert)
+        //            self.present(userAlert, animated: true, completion: { _ in })
+        //            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        //            userAlert.addAction(cancel)
+        //        }
+        
         // Save the training data as a CSV file to temp directory
-//        let classificiationDataPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainingPipelineData.csv")
-//        let classificationTempPipelineSaveResult = self.pipeline?.saveClassificationData(classificiationDataPipelineTempURL)
+        //        let classificiationDataPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainingPipelineData.csv")
+        //        let classificationTempPipelineSaveResult = self.pipeline?.saveClassificationData(classificiationDataPipelineTempURL)
         
-        let classificiationDataVerticalPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainingVerticalPipelineData.csv")
-        let classificationTempVerticalPipelineSaveResult = self.verticalPipeline?.saveClassificationData(classificiationDataVerticalPipelineTempURL)
+        let classificiationDataFastPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainingFastPipelineData.csv")
+        let classificationTempFastPipelineSaveResult = self.fastPipeline?.saveClassificationData(classificiationDataFastPipelineTempURL)
         
-//        if !classificationTempPipelineSaveResult! {
-//            let userAlert = UIAlertController(title: "Error", message: "Failed to save classification data", preferredStyle: .alert)
-//            self.present(userAlert, animated: true, completion: { _ in })
-//            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-//            userAlert.addAction(cancel)
-//        }
         
-        if !classificationTempVerticalPipelineSaveResult! {
+        //        let classificiationDataVerticalPipelineTempURL = tempPipelineDirectory.appendingPathComponent("trainingVerticalPipelineData.csv")
+        //        let classificationTempVerticalPipelineSaveResult = self.verticalPipeline?.saveClassificationData(classificiationDataVerticalPipelineTempURL)
+        
+        //        if !classificationTempPipelineSaveResult! {
+        //            let userAlert = UIAlertController(title: "Error", message: "Failed to save classification data", preferredStyle: .alert)
+        //            self.present(userAlert, animated: true, completion: { _ in })
+        //            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        //            userAlert.addAction(cancel)
+        //        }
+        
+        if !classificationTempFastPipelineSaveResult! {
             let userAlert = UIAlertController(title: "Error", message: "Failed to save classification data", preferredStyle: .alert)
             self.present(userAlert, animated: true, completion: { _ in })
             let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             userAlert.addAction(cancel)
         }
         
-        let pipelineURL = documentsPipelineUrl.appendingPathComponent("trainPipeline.grt")
-        let classificiationPipelineDataURL = documentsPipelineUrl.appendingPathComponent("trainingPipelineData.csv")
+        //        if !classificationTempVerticalPipelineSaveResult! {
+        //            let userAlert = UIAlertController(title: "Error", message: "Failed to save classification data", preferredStyle: .alert)
+        //            self.present(userAlert, animated: true, completion: { _ in })
+        //            let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        //            userAlert.addAction(cancel)
+        //        }
         
-        let verticalPipelineURL = documentsPipelineUrl.appendingPathComponent("trainVerticalPipeline.grt")
-        let classificiationVerticalPipelineDataURL = documentsPipelineUrl.appendingPathComponent("trainingVerticalPipelineData.csv")
+        //        let pipelineURL = documentsPipelineUrl.appendingPathComponent("trainPipeline.grt")
+        //        let classificiationPipelineDataURL = documentsPipelineUrl.appendingPathComponent("trainingPipelineData.csv")
         
-//        if pipelineTempSaveResult ?? false, classificationTempPipelineSaveResult ?? false {
-//            // Remove the pipeline if it already exists if temp save is ok
-//            //            let _ = try? FileManager.default.removeItem(at: pipelineTempURL)
-//            //            let _ = try? FileManager.default.removeItem(at: classificiationDataPipelineTempURL)
-//            let _ = try? FileManager.default.removeItem(at: pipelineURL)
-//            let _ = try? FileManager.default.removeItem(at: classificiationPipelineDataURL)
-//            
-//            //Copy files from temporary folder
-//            let _ = try? FileManager.default.copyItem(at: pipelineTempURL, to: pipelineURL)
-//            let _ = try? FileManager.default.copyItem(at: classificiationDataPipelineTempURL, to: classificiationPipelineDataURL)
-//        }
+        let fastPipelineURL = documentsPipelineUrl.appendingPathComponent("trainFastPipeline.grt")
+        let classificiationFastPipelineDataURL = documentsPipelineUrl.appendingPathComponent("trainingFastPipelineData.csv")
         
-        if verticalPipelineTempSaveResult ?? false, classificationTempVerticalPipelineSaveResult ?? false {
+        //        let verticalPipelineURL = documentsPipelineUrl.appendingPathComponent("trainVerticalPipeline.grt")
+        //        let classificiationVerticalPipelineDataURL = documentsPipelineUrl.appendingPathComponent("trainingVerticalPipelineData.csv")
+        
+        //        if pipelineTempSaveResult ?? false, classificationTempPipelineSaveResult ?? false {
+        //            // Remove the pipeline if it already exists if temp save is ok
+        //            //            let _ = try? FileManager.default.removeItem(at: pipelineTempURL)
+        //            //            let _ = try? FileManager.default.removeItem(at: classificiationDataPipelineTempURL)
+        //            let _ = try? FileManager.default.removeItem(at: pipelineURL)
+        //            let _ = try? FileManager.default.removeItem(at: classificiationPipelineDataURL)
+        //
+        //            //Copy files from temporary folder
+        //            let _ = try? FileManager.default.copyItem(at: pipelineTempURL, to: pipelineURL)
+        //            let _ = try? FileManager.default.copyItem(at: classificiationDataPipelineTempURL, to: classificiationPipelineDataURL)
+        //        }
+        
+        if classificationTempFastPipelineSaveResult ?? false, fastPipelineTempSaveResult ?? false {
             // Remove the pipeline if it already exists if temp save is ok
-            //            let _ = try? FileManager.default.removeItem(at: pipelineTempURL)
-            //            let _ = try? FileManager.default.removeItem(at: classificiationDataPipelineTempURL)
-            let _ = try? FileManager.default.removeItem(at: verticalPipelineURL)
-            let _ = try? FileManager.default.removeItem(at: classificiationVerticalPipelineDataURL)
+//            let _ = try? FileManager.default.removeItem(at: fastPipelineTempURL)
+//            let _ = try? FileManager.default.removeItem(at: classificiationDataFastPipelineTempURL)
+            let _ = try? FileManager.default.removeItem(at: fastPipelineURL)
+            let _ = try? FileManager.default.removeItem(at: classificiationFastPipelineDataURL)
             
             //Copy files from temporary folder
-            let _ = try? FileManager.default.copyItem(at: verticalPipelineTempURL, to: verticalPipelineURL)
-            let _ = try? FileManager.default.copyItem(at: classificiationDataVerticalPipelineTempURL, to: classificiationVerticalPipelineDataURL)
+            let _ = try? FileManager.default.copyItem(at: fastPipelineTempURL, to: fastPipelineURL)
+            let _ = try? FileManager.default.copyItem(at: classificiationDataFastPipelineTempURL, to: classificiationFastPipelineDataURL)
         }
+    
+        //        if verticalPipelineTempSaveResult ?? false, classificationTempVerticalPipelineSaveResult ?? false {
+        //            // Remove the pipeline if it already exists if temp save is ok
+        //            //            let _ = try? FileManager.default.removeItem(at: pipelineTempURL)
+        //            //            let _ = try? FileManager.default.removeItem(at: classificiationDataPipelineTempURL)
+        //            let _ = try? FileManager.default.removeItem(at: verticalPipelineURL)
+        //            let _ = try? FileManager.default.removeItem(at: classificiationVerticalPipelineDataURL)
+        //
+        //            //Copy files from temporary folder
+        //            let _ = try? FileManager.default.copyItem(at: verticalPipelineTempURL, to: verticalPipelineURL)
+        //            let _ = try? FileManager.default.copyItem(at: classificiationDataVerticalPipelineTempURL, to: classificiationVerticalPipelineDataURL)
+        //        }
         
     }
     
