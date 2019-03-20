@@ -15,7 +15,8 @@
 		0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */; };
 		0E6720D5222E96E200957425 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720D3222E96E200957425 /* Inter-Bold.otf */; };
 		0E6720D6222E96E200957425 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6720D4222E96E200957425 /* Inter-Regular.otf */; };
-		0E71BD6D223CF2C3004C8B50 /* MatrixFloat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */; };
+		0EAB380A223F7A59009A2CF1 /* GRTiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EAB3803223F7A59009A2CF1 /* GRTiOS.framework */; };
+		0EAB380B223F7ABE009A2CF1 /* GRTiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 70008F20223F61D3007E8BF5 /* GRTiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4775E791F5EF5D500D306FD /* TrainingViewController.swift */; };
 		E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */; };
 		E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AB6D361F5EF38A00917F2B /* AcceleremoterManager.swift */; };
@@ -25,12 +26,81 @@
 		E4C972E41F45DA0400406BCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4C972E21F45DA0400406BCF /* LaunchScreen.storyboard */; };
 		E4C972EF1F45DA0400406BCF /* GRT_iOS_HelloWorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C972EE1F45DA0400406BCF /* GRT_iOS_HelloWorldTests.swift */; };
 		E4C972FA1F45DA0400406BCF /* GRT_iOS_HelloWorldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C972F91F45DA0400406BCF /* GRT_iOS_HelloWorldUITests.swift */; };
-		E4F789791F460C5C00683570 /* GRTiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4F7895B1F45E7D900683570 /* GRTiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4F8BFDD1F7C337200415AF3 /* SwiftR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F8BFDE1F7C337200415AF3 /* SwiftR.framework */; };
 		E4F8BFE11F7C36BE00415AF3 /* SwiftR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4F8BFDE1F7C337200415AF3 /* SwiftR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		70008F0E223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 606FEF1E1E53EDB1000BEB7C;
+			remoteInfo = SwiftR_macOS;
+		};
+		70008F10223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 606FEF271E53EDB1000BEB7C;
+			remoteInfo = SwiftR_macOSTests;
+		};
+		70008F12223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 606FEF3D1E53EDFB000BEB7C;
+			remoteInfo = SwiftR_iOS;
+		};
+		70008F14223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 606FEF451E53EDFB000BEB7C;
+			remoteInfo = SwiftR_iOSTests;
+		};
+		70008F16223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 60E7A4591E5D5D2000FA15B4;
+			remoteInfo = SwiftR_iOSUITests;
+		};
+		70008F18223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 60E7A4651E5D5D3700FA15B4;
+			remoteInfo = SwiftR_macOSUITests;
+		};
+		70008F1F223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F1A223F61D3007E8BF5 /* GRTiOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4065B251F44930300990FA4;
+			remoteInfo = GRTiOS;
+		};
+		70008F21223F61D3007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F1A223F61D3007E8BF5 /* GRTiOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4065B2E1F44930300990FA4;
+			remoteInfo = GRTiOSTests;
+		};
+		70008F23223F61DD007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 606FEF3C1E53EDFB000BEB7C;
+			remoteInfo = SwiftR_iOS;
+		};
+		70008F25223F61E1007E8BF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70008F1A223F61D3007E8BF5 /* GRTiOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E4065B241F44930300990FA4;
+			remoteInfo = GRTiOS;
+		};
 		E4C972EB1F45DA0400406BCF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4C972CE1F45DA0400406BCF /* Project object */;
@@ -45,27 +115,6 @@
 			remoteGlobalIDString = E4C972D51F45DA0400406BCF;
 			remoteInfo = "GRT-iOS-HelloWorld";
 		};
-		E4F7895A1F45E7D900683570 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4065B251F44930300990FA4;
-			remoteInfo = GRTiOS;
-		};
-		E4F7895C1F45E7D900683570 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4065B2E1F44930300990FA4;
-			remoteInfo = GRTiOSTests;
-		};
-		E4F7897A1F460C5C00683570 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E4065B241F44930300990FA4;
-			remoteInfo = GRTiOS;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,8 +124,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0EAB380B223F7ABE009A2CF1 /* GRTiOS.framework in Embed Frameworks */,
 				E4F8BFE11F7C36BE00415AF3 /* SwiftR.framework in Embed Frameworks */,
-				E4F789791F460C5C00683570 /* GRTiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,8 +141,9 @@
 		0E6720CF222CE53300957425 /* PatternDetectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternDetectedViewController.swift; sourceTree = "<group>"; };
 		0E6720D3222E96E200957425 /* Inter-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.otf"; sourceTree = "<group>"; };
 		0E6720D4222E96E200957425 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
-		0E71BD6A223CF2A1004C8B50 /* MatrixFloat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatrixFloat.h; sourceTree = "<group>"; };
-		0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixFloat.mm; sourceTree = "<group>"; };
+		0EAB3803223F7A59009A2CF1 /* GRTiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GRTiOS.framework; sourceTree = "<group>"; };
+		70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftR.xcodeproj; path = ../SwiftR/SwiftR.xcodeproj; sourceTree = "<group>"; };
+		70008F1A223F61D3007E8BF5 /* GRTiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRTiOS.xcodeproj; path = ../GRTiOSFramework/GRTiOS.xcodeproj; sourceTree = "<group>"; };
 		E41951FF1F4B6D3E0016E511 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E4775E791F5EF5D500D306FD /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		E488D4A11F4C8DD2004A5CC6 /* PredictionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
@@ -112,19 +162,7 @@
 		E4C972FB1F45DA0400406BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4F7892C1F45DB0500683570 /* GRTiOSFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GRTiOSFramework.framework; path = "../GRTiOSFramework/build/Debug-iphoneos/GRTiOSFramework.framework"; sourceTree = "<group>"; };
 		E4F7892E1F45DCDA00683570 /* GRTiOSFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GRTiOSFramework.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GRT-HelloWorld-gjbanovjypsdbdgdyuofejqirqpd/Build/Products/Debug-iphonesimulator/GRTiOSFramework.framework"; sourceTree = "<group>"; };
-		E4F789301F45DEAC00683570 /* GRTiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GRTiOS.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GRT-HelloWorld-gjbanovjypsdbdgdyuofejqirqpd/Build/Products/Debug-iphonesimulator/GRTiOS.framework"; sourceTree = "<group>"; };
 		E4F789371F45E2BE00683570 /* GRT-iOS-HelloWorld-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GRT-iOS-HelloWorld-Bridging-Header.h"; sourceTree = "<group>"; };
-		E4F789461F45E7D800683570 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
-		E4F789471F45E7D800683570 /* GestureRecognitionPipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureRecognitionPipeline.h; sourceTree = "<group>"; };
-		E4F789481F45E7D800683570 /* GestureRecognitionPipeline.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GestureRecognitionPipeline.mm; sourceTree = "<group>"; };
-		E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = GRTiOS.xcodeproj; sourceTree = "<group>"; };
-		E4F7894D1F45E7D900683570 /* GRTiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRTiOS.h; sourceTree = "<group>"; };
-		E4F7894E1F45E7D900683570 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4F789501F45E7D900683570 /* GRTiOSFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRTiOSFrameworkTests.swift; sourceTree = "<group>"; };
-		E4F789511F45E7D900683570 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4F789531F45E7D900683570 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E4F789561F45E7D900683570 /* VectorDouble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VectorDouble.h; sourceTree = "<group>"; };
-		E4F789571F45E7D900683570 /* VectorDouble.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VectorDouble.mm; sourceTree = "<group>"; };
 		E4F8BFDE1F7C337200415AF3 /* SwiftR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EAB380A223F7A59009A2CF1 /* GRTiOS.framework in Frameworks */,
 				E4F8BFDD1F7C337200415AF3 /* SwiftR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,9 +217,33 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		70008F06223F61D3007E8BF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70008F0F223F61D3007E8BF5 /* SwiftR.framework */,
+				70008F11223F61D3007E8BF5 /* SwiftR_macOSTests.xctest */,
+				70008F13223F61D3007E8BF5 /* SwiftR.framework */,
+				70008F15223F61D3007E8BF5 /* SwiftR_iOSTests.xctest */,
+				70008F17223F61D3007E8BF5 /* SwiftR_iOSUITests.xctest */,
+				70008F19223F61D3007E8BF5 /* SwiftR_macOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70008F1B223F61D3007E8BF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70008F20223F61D3007E8BF5 /* GRTiOS.framework */,
+				70008F22223F61D3007E8BF5 /* GRTiOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E4C972CD1F45DA0400406BCF = {
 			isa = PBXGroup;
 			children = (
+				70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */,
+				70008F1A223F61D3007E8BF5 /* GRTiOS.xcodeproj */,
 				E4F789371F45E2BE00683570 /* GRT-iOS-HelloWorld-Bridging-Header.h */,
 				E4C972D81F45DA0400406BCF /* GRT-iOS-HelloWorld */,
 				E4C972ED1F45DA0400406BCF /* GRT-iOS-HelloWorldTests */,
@@ -239,82 +302,11 @@
 			children = (
 				E4F8BFDE1F7C337200415AF3 /* SwiftR.framework */,
 				E41951FF1F4B6D3E0016E511 /* CoreMotion.framework */,
-				E4F789451F45E7D800683570 /* GRTiOSFramework */,
-				E4F789301F45DEAC00683570 /* GRTiOS.framework */,
+				0EAB3803223F7A59009A2CF1 /* GRTiOS.framework */,
 				E4F7892E1F45DCDA00683570 /* GRTiOSFramework.framework */,
 				E4F7892C1F45DB0500683570 /* GRTiOSFramework.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E4F789451F45E7D800683570 /* GRTiOSFramework */ = {
-			isa = PBXGroup;
-			children = (
-				E4F789461F45E7D800683570 /* BridgingHeader.h */,
-				E4F789471F45E7D800683570 /* GestureRecognitionPipeline.h */,
-				E4F789481F45E7D800683570 /* GestureRecognitionPipeline.mm */,
-				E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */,
-				E4F7894C1F45E7D900683570 /* GRTiOSFramework */,
-				E4F7894F1F45E7D900683570 /* GRTiOSFrameworkTests */,
-				E4F789521F45E7D900683570 /* iOS-GRT-HelloWorld */,
-				E4F789541F45E7D900683570 /* iOS-GRT-HelloWorldTests */,
-				E4F789551F45E7D900683570 /* iOS-GRT-HelloWorldUITests */,
-				E4F789561F45E7D900683570 /* VectorDouble.h */,
-				0E71BD6A223CF2A1004C8B50 /* MatrixFloat.h */,
-				0E71BD6C223CF2C3004C8B50 /* MatrixFloat.mm */,
-				E4F789571F45E7D900683570 /* VectorDouble.mm */,
-			);
-			name = GRTiOSFramework;
-			path = ../GRTiOSFramework;
-			sourceTree = "<group>";
-		};
-		E4F7894A1F45E7D800683570 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E4F7895B1F45E7D900683570 /* GRTiOS.framework */,
-				E4F7895D1F45E7D900683570 /* GRTiOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E4F7894C1F45E7D900683570 /* GRTiOSFramework */ = {
-			isa = PBXGroup;
-			children = (
-				E4F7894D1F45E7D900683570 /* GRTiOS.h */,
-				E4F7894E1F45E7D900683570 /* Info.plist */,
-			);
-			path = GRTiOSFramework;
-			sourceTree = "<group>";
-		};
-		E4F7894F1F45E7D900683570 /* GRTiOSFrameworkTests */ = {
-			isa = PBXGroup;
-			children = (
-				E4F789501F45E7D900683570 /* GRTiOSFrameworkTests.swift */,
-				E4F789511F45E7D900683570 /* Info.plist */,
-			);
-			path = GRTiOSFrameworkTests;
-			sourceTree = "<group>";
-		};
-		E4F789521F45E7D900683570 /* iOS-GRT-HelloWorld */ = {
-			isa = PBXGroup;
-			children = (
-				E4F789531F45E7D900683570 /* Assets.xcassets */,
-			);
-			path = "iOS-GRT-HelloWorld";
-			sourceTree = "<group>";
-		};
-		E4F789541F45E7D900683570 /* iOS-GRT-HelloWorldTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "iOS-GRT-HelloWorldTests";
-			sourceTree = "<group>";
-		};
-		E4F789551F45E7D900683570 /* iOS-GRT-HelloWorldUITests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "iOS-GRT-HelloWorldUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,7 +324,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				E4F7897B1F460C5C00683570 /* PBXTargetDependency */,
+				70008F26223F61E1007E8BF5 /* PBXTargetDependency */,
+				70008F24223F61DD007E8BF5 /* PBXTargetDependency */,
 			);
 			name = "GRT-iOS-HelloWorld";
 			productName = "GRT-iOS-HelloWorld";
@@ -415,8 +408,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E4F7894A1F45E7D800683570 /* Products */;
-					ProjectRef = E4F789491F45E7D800683570 /* GRTiOS.xcodeproj */;
+					ProductGroup = 70008F1B223F61D3007E8BF5 /* Products */;
+					ProjectRef = 70008F1A223F61D3007E8BF5 /* GRTiOS.xcodeproj */;
+				},
+				{
+					ProductGroup = 70008F06223F61D3007E8BF5 /* Products */;
+					ProjectRef = 70008F05223F61D3007E8BF5 /* SwiftR.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -429,18 +426,60 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E4F7895B1F45E7D900683570 /* GRTiOS.framework */ = {
+		70008F0F223F61D3007E8BF5 /* SwiftR.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftR.framework;
+			remoteRef = 70008F0E223F61D3007E8BF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70008F11223F61D3007E8BF5 /* SwiftR_macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftR_macOSTests.xctest;
+			remoteRef = 70008F10223F61D3007E8BF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70008F13223F61D3007E8BF5 /* SwiftR.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftR.framework;
+			remoteRef = 70008F12223F61D3007E8BF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70008F15223F61D3007E8BF5 /* SwiftR_iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftR_iOSTests.xctest;
+			remoteRef = 70008F14223F61D3007E8BF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70008F17223F61D3007E8BF5 /* SwiftR_iOSUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftR_iOSUITests.xctest;
+			remoteRef = 70008F16223F61D3007E8BF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70008F19223F61D3007E8BF5 /* SwiftR_macOSUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftR_macOSUITests.xctest;
+			remoteRef = 70008F18223F61D3007E8BF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70008F20223F61D3007E8BF5 /* GRTiOS.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GRTiOS.framework;
-			remoteRef = E4F7895A1F45E7D900683570 /* PBXContainerItemProxy */;
+			remoteRef = 70008F1F223F61D3007E8BF5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E4F7895D1F45E7D900683570 /* GRTiOSTests.xctest */ = {
+		70008F22223F61D3007E8BF5 /* GRTiOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = GRTiOSTests.xctest;
-			remoteRef = E4F7895C1F45E7D900683570 /* PBXContainerItemProxy */;
+			remoteRef = 70008F21223F61D3007E8BF5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -485,7 +524,6 @@
 				0E525816222941A6005442E2 /* DetectingProcessViewController.swift in Sources */,
 				0E52581422294142005442E2 /* UserModeMainViewController.swift in Sources */,
 				0E6720D0222CE53300957425 /* PatternDetectedViewController.swift in Sources */,
-				0E71BD6D223CF2C3004C8B50 /* MatrixFloat.mm in Sources */,
 				E488D4A21F4C8DD2004A5CC6 /* PredictionViewController.swift in Sources */,
 				E4AB6D371F5EF38A00917F2B /* AcceleremoterManager.swift in Sources */,
 				E4775E7A1F5EF5D500D306FD /* TrainingViewController.swift in Sources */,
@@ -512,6 +550,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		70008F24223F61DD007E8BF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftR_iOS;
+			targetProxy = 70008F23223F61DD007E8BF5 /* PBXContainerItemProxy */;
+		};
+		70008F26223F61E1007E8BF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GRTiOS;
+			targetProxy = 70008F25223F61E1007E8BF5 /* PBXContainerItemProxy */;
+		};
 		E4C972EC1F45DA0400406BCF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E4C972D51F45DA0400406BCF /* GRT-iOS-HelloWorld */;
@@ -521,11 +569,6 @@
 			isa = PBXTargetDependency;
 			target = E4C972D51F45DA0400406BCF /* GRT-iOS-HelloWorld */;
 			targetProxy = E4C972F61F45DA0400406BCF /* PBXContainerItemProxy */;
-		};
-		E4F7897B1F460C5C00683570 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GRTiOS;
-			targetProxy = E4F7897A1F460C5C00683570 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -649,6 +692,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = L59JFSX5QN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "GRT-iOS-HelloWorld/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -664,6 +711,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = L59JFSX5QN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "GRT-iOS-HelloWorld/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

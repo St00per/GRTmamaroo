@@ -58,9 +58,8 @@
                                             <constraint firstAttribute="width" constant="230" id="NzZ-Lx-B9e"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXE-32-onv">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXE-32-onv">
                                         <rect key="frame" x="370" y="13" width="30" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="17"/>
                                         <state key="normal" title="X">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,7 +76,9 @@
                                     <constraint firstItem="m8a-do-Ivp" firstAttribute="leading" secondItem="L8r-Mf-Jga" secondAttribute="leading" constant="80" id="KbR-Q6-8OT"/>
                                     <constraint firstItem="koC-If-3or" firstAttribute="top" secondItem="L8r-Mf-Jga" secondAttribute="top" constant="50" id="LQQ-oL-89o"/>
                                     <constraint firstItem="m8a-do-Ivp" firstAttribute="top" secondItem="IyG-Co-QZH" secondAttribute="bottom" constant="167" id="RLZ-Fb-g9Y"/>
+                                    <constraint firstItem="GXE-32-onv" firstAttribute="top" secondItem="L8r-Mf-Jga" secondAttribute="top" constant="13" id="XmS-4x-eqX"/>
                                     <constraint firstAttribute="trailing" secondItem="koC-If-3or" secondAttribute="trailing" constant="46" id="aAy-5E-T3A"/>
+                                    <constraint firstAttribute="trailing" secondItem="GXE-32-onv" secondAttribute="trailing" constant="14" id="kRZ-5Z-NtK"/>
                                     <constraint firstAttribute="trailing" secondItem="m8a-do-Ivp" secondAttribute="trailing" constant="80" id="nWg-xZ-eha"/>
                                     <constraint firstItem="koC-If-3or" firstAttribute="leading" secondItem="L8r-Mf-Jga" secondAttribute="leading" constant="46" id="oJy-6U-JMQ"/>
                                 </constraints>

@@ -14,9 +14,10 @@
 
 - (void)pushBack:(double)value;
 - (void)clear;
-
+- (float) at: (int) i;
 #ifdef __cplusplus
 - (GRT::VectorFloat *)cppInstance;
+- (void) setCppInstance:(GRT::VectorFloat *) instance;
 #endif
 
 @end

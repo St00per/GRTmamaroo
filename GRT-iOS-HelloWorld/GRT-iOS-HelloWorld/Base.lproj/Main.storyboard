@@ -45,7 +45,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Training Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87c-Ow-TBd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Training Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87c-Ow-TBd">
                                 <rect key="frame" x="139" y="49" width="148" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -70,10 +70,12 @@
                                     <segment title="Rock-a-bye"/>
                                     <segment title="Wave"/>
                                 </segments>
+                                <connections>
+                                    <action selector="gestureSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="RRQ-zM-RNu"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3U-d5-rlt">
-                                <rect key="frame" x="317" y="40" width="72" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="302" y="40" width="72" height="30"/>
                                 <color key="backgroundColor" red="0.0078431372550000003" green="0.2470588235" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="UserMode">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,6 +101,8 @@
                             <constraint firstItem="Wcv-fJ-IK8" firstAttribute="top" secondItem="LIm-Rt-FF5" secondAttribute="bottom" constant="8" id="JKb-Zo-DNn"/>
                             <constraint firstItem="87c-Ow-TBd" firstAttribute="top" secondItem="Z1g-bT-7iM" secondAttribute="bottom" constant="8" id="LUe-Op-6RR"/>
                             <constraint firstItem="Z1g-bT-7iM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LjC-9W-Aos"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p3U-d5-rlt" secondAttribute="trailing" constant="20" id="NWM-ho-u4h"/>
+                            <constraint firstItem="p3U-d5-rlt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="R6I-pH-kYs"/>
                             <constraint firstItem="87c-Ow-TBd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="TxQ-r8-D9K"/>
                             <constraint firstItem="HdA-Tw-aNO" firstAttribute="top" secondItem="87c-Ow-TBd" secondAttribute="bottom" constant="15" id="Z7g-ba-S17"/>
                             <constraint firstItem="Wcv-fJ-IK8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="e1U-hY-4cd"/>

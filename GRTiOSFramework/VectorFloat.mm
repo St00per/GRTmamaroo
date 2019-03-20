@@ -57,5 +57,11 @@
 {
     return self.instance;
 }
+- (float) at: (int) i {
+    return self.instance->at((size_t) i);
+}
 
+- (void) setCppInstance: (GRT::VectorFloat *) instance {
+    self.instance =  instance;
+}
 @end

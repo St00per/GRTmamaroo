@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70008F29223F751B007E8BF5 /* MatrixFloat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70008F27223F751B007E8BF5 /* MatrixFloat.mm */; };
+		70008F2A223F751B007E8BF5 /* MatrixFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = 70008F28223F751B007E8BF5 /* MatrixFloat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4065B2F1F44930300990FA4 /* GRTiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4065B251F44930300990FA4 /* GRTiOS.framework */; };
 		E4065B341F44930300990FA4 /* GRTiOSFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4065B331F44930300990FA4 /* GRTiOSFrameworkTests.swift */; };
 		E4065B361F44930300990FA4 /* GRTiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = E4065B281F44930300990FA4 /* GRTiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -296,6 +298,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		70008F27223F751B007E8BF5 /* MatrixFloat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatrixFloat.mm; sourceTree = "<group>"; };
+		70008F28223F751B007E8BF5 /* MatrixFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixFloat.h; sourceTree = "<group>"; };
 		E4065B251F44930300990FA4 /* GRTiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GRTiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4065B281F44930300990FA4 /* GRTiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRTiOS.h; sourceTree = "<group>"; };
 		E4065B291F44930300990FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1397,6 +1401,8 @@
 				E4065D931F4498B200990FA4 /* GestureRecognitionPipeline.mm */,
 				E41951FB1F4B6B7C0016E511 /* VectorDouble.h */,
 				E41951FC1F4B6B7C0016E511 /* VectorDouble.mm */,
+				70008F28223F751B007E8BF5 /* MatrixFloat.h */,
+				70008F27223F751B007E8BF5 /* MatrixFloat.mm */,
 				E44B69861F4D056B00C42FD6 /* VectorFloat.h */,
 				E44B69841F4D052A00C42FD6 /* VectorFloat.mm */,
 			);
@@ -1523,6 +1529,7 @@
 				E4065D601F44931800990FA4 /* EigenvalueDecomposition.h in Headers */,
 				E4065CFD1F44931800990FA4 /* Matrix.h in Headers */,
 				E4065D251F44931800990FA4 /* TimeseriesBuffer.h in Headers */,
+				70008F2A223F751B007E8BF5 /* MatrixFloat.h in Headers */,
 				E4065C941F44931800990FA4 /* BAG.h in Headers */,
 				E4065CDC1F44931800990FA4 /* PSOParticle.h in Headers */,
 				E4065D421F44931800990FA4 /* RMSFilter.h in Headers */,
@@ -1713,6 +1720,7 @@
 				E4065D161F44931800990FA4 /* KMeansFeatures.cpp in Sources */,
 				E4065D8C1F44931800990FA4 /* Util.cpp in Sources */,
 				E4065CED1F44931800990FA4 /* GRTBase.cpp in Sources */,
+				70008F29223F751B007E8BF5 /* MatrixFloat.mm in Sources */,
 				E4065D891F44931800990FA4 /* TrainingLog.cpp in Sources */,
 				E4065C861F44931800990FA4 /* AdaBoost.cpp in Sources */,
 				E4065D981F4498B200990FA4 /* GestureRecognitionPipeline.mm in Sources */,

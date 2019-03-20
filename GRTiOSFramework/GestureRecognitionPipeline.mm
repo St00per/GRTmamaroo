@@ -89,17 +89,17 @@ private:
     self.instance->setClassifier(classifier);
     classifier.enableNullRejection(true);
     self.instance->addPostProcessingModule(GRT::ClassLabelTimeoutFilter(500, GRT::ClassLabelTimeoutFilter::ALL_CLASS_LABELS));
-    self.classificationData->setNumDimensions(1800);
+    self.classificationData->setNumDimensions(6);
 }
 
 //// save and load pipeline
 - (BOOL)savePipeline:(NSURL *)url {
-    BOOL result = self.instance->save(std::string([url fileSystemRepresentation]));
+    BOOL result = self.instance->savePipelineToFile(std::string([url fileSystemRepresentation]));
     return result;
 }
 
 - (BOOL)loadPipeline:(NSURL *)url {
-
+    
     BOOL result = self.instance->load(std::string([url fileSystemRepresentation]));
     
     if (result) {
@@ -121,7 +121,7 @@ private:
 
 - (BOOL)loadClassificationData:(NSURL *)url {
     
-    BOOL result = self.classificationData->load(std::string([url fileSystemRepresentation]));    
+    BOOL result = self.classificationData->load(std::string([url fileSystemRepresentation]));
     return result;
 }
 
@@ -133,22 +133,22 @@ private:
 - (BOOL)trainPipeline {
     *self.trainingData = self.classificationData->split(80);
     BOOL trainSuccess = self.instance->train( *(self.trainingData) );
-
+    
     std::cout << "STATS " << self.classificationData->getStatsAsString();
-
+    
     
     GRT::TestResult testResults = self.instance->getTestResults();
     
     std::cout << "Pipeline Test Accuracy: " << self.instance->getTestAccuracy() << std::endl;
-
+    
     
     GRT::Vector< GRT::UINT > classLabels = self.instance->getClassLabels();
-
+    
     std::cout << "Precision: ";
     for (GRT::UINT k=0; k<self.instance->getNumClassesInModel(); k++) {
         std::cout << "\t" << self.instance->getTestPrecision(classLabels[k]);
     }std::cout << std::endl;
-
+    
     return trainSuccess;
 }
 

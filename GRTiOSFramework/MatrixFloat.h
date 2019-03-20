@@ -1,29 +1,23 @@
 //
 //  MatrixFloat.h
-//  GRT-iOS-HelloWorld
+//  GRTiOS
 //
-//  Created by Kirill Shteffen on 16/03/2019.
+//  Created by Вячеслав Казаков on 17.03.2019.
 //  Copyright © 2019 Nicholas Arner. All rights reserved.
 //
 
-
-
-#ifndef MatrixFloat_h
-#define MatrixFloat_h
-
 #import <Foundation/Foundation.h>
+#import "VectorFloat.h"
 
 @interface MatrixFloat : NSObject
 
-- (instancetype)initWithSize:(NSInteger) size;
-
-- (void)pushBack:(double)value;
+- (instancetype)initWithSize:(uint) rows columns: (uint) columns;
+- (void)pushBack:(VectorFloat *) value;
 - (void)clear;
-
+//- (VectorFloat *) at: (size_t) i;
 #ifdef __cplusplus
 - (GRT::MatrixFloat *)cppInstance;
+-(void) setCppInstance: (GRT::MatrixFloat *) cppInstance;
 #endif
 
 @end
-
-#endif /* MatrixFloat_h */

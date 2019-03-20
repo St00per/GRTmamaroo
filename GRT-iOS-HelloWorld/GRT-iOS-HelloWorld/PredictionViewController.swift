@@ -19,7 +19,6 @@ class PredictionViewController: UIViewController {
     @IBOutlet var rockAByeCountLabel: UILabel!
     @IBOutlet var waveCountLabel: UILabel!
     
-    
     @IBOutlet weak var graphView: SRMergePlotView! {
         didSet {
             graphView.title = "Accelerometer Data"
@@ -32,17 +31,18 @@ class PredictionViewController: UIViewController {
     var treeSwingCount: UInt = 0
     var rockAByeCount: UInt = 0
     var waveCount: UInt = 0
+    var iterationCount: UInt = 0
     
     fileprivate let accelerometerManager = AccelerometerManager()
 
     var currentClassLabel = 0 as UInt
     var labelUpdateTime = Date.timeIntervalSinceReferenceDate
-    let vector = VectorDouble()
+    //let matrix = MatrixFloat()
     var pipeline: GestureRecognitionPipeline?
     
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.pipeline = appDelegate.pipelineFive!
+        
 
         //initPipeline()
         graphView.totalChannelsToDisplay = 3
@@ -106,17 +106,25 @@ class PredictionViewController: UIViewController {
     }
     
     func performGesturePrediction() {
+        //self.matrix.clear()
         accelerometerManager.start { (deviceMotion) -> Void in
-            self.vector.clear()
-            self.vector.pushBack(deviceMotion.userAcceleration.x)
-            self.vector.pushBack(deviceMotion.userAcceleration.y)
-            self.vector.pushBack(deviceMotion.userAcceleration.z)
-            self.vector.pushBack(deviceMotion.rotationRate.x)
-            self.vector.pushBack(deviceMotion.rotationRate.y)
-            self.vector.pushBack(deviceMotion.rotationRate.z)
+            if let vector = VectorFloat(size: 6) {
+                vector.pushBack(deviceMotion.userAcceleration.x)
+                vector.pushBack(deviceMotion.userAcceleration.y)
+                vector.pushBack(deviceMotion.userAcceleration.z)
+                vector.pushBack(deviceMotion.rotationRate.x)
+                vector.pushBack(deviceMotion.rotationRate.y)
+                vector.pushBack(deviceMotion.rotationRate.z)
+                //self.matrix.pushBack(vector);
+            }
             
-            //Use the incoming accellerometer data to predict what the performed gesture class is
-            self.pipeline?.predict(self.vector)
+            //if self.iterationCount == 300 {
+                //self.pipeline?.predict(self.matrix)
+                //self.matrix.clear()
+                self.iterationCount = 0
+            //}
+                //Use the incoming accellerometer data to predict what the performed gesture class is
+            //self.pipeline?.predict(self.matrix)
 
             DispatchQueue.main.async {
                 self.updateGestureCountLabels(gesture: (self.pipeline?.predictedClassLabel)!)

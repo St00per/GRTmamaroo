@@ -1,10 +1,12 @@
 //
 //  MatrixFloat.m
-//  GRT-iOS-HelloWorld
+//  GRTiOS
 //
-//  Created by Kirill Shteffen on 16/03/2019.
+//  Created by Вячеслав Казаков on 17.03.2019.
 //  Copyright © 2019 Nicholas Arner. All rights reserved.
 //
+
+#import <Foundation/Foundation.h>
 
 #ifdef __cplusplus
 #include "grt.h"
@@ -16,7 +18,10 @@
 @property GRT::MatrixFloat *instance;
 @end
 
-@implementation MatrixFloat
+@implementation MatrixFloat {
+    double *dataPtr;
+    double **rowPtr;
+}
 
 - (instancetype)init
 {
@@ -27,11 +32,13 @@
     return self;
 }
 
-- (instancetype)initWithSize:(NSInteger) size
+- (instancetype)initWithSize:(uint) rows columns: (uint) columns
 {
     self = [super init];
     if (self) {
-        self.instance = new GRT::MatrixFloat(size);
+        self.instance = new GRT::MatrixFloat(rows, columns);
+        dataPtr = self.instance->getData();
+
     }
     return self;
 }
@@ -41,9 +48,10 @@
     delete self.instance;
 }
 
-- (void)pushBack:(double) value
+- (void)pushBack:(VectorFloat *) value
 {
-    self.instance->push_back(value);
+    GRT::VectorFloat *cppValue = [value cppInstance];
+    self.instance->push_back(*cppValue);
 }
 
 - (void)clear
@@ -51,9 +59,23 @@
     self.instance->clear();
 }
 
-- (GRT::VectorDouble *)cppInstance
+- (GRT::MatrixFloat *)cppInstance
 {
     return self.instance;
 }
+
+-(void) setCppInstance: (GRT::MatrixFloat *) cppInstance {
+    self.cppInstance = cppInstance;
+}
+
+
+
+//- (VectorFloat *) at: (size_t) i {
+//    GRT::VectorFloat *vector = new GRT::VectorFloat(self.instance->getRow(i));
+//    VectorFloat *wrapedVector = [VectorFloat new];
+//    wrapedVector.cppInstance = vector;
+//    return wrapedVector;
+//}
+
 
 @end
